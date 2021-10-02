@@ -12,7 +12,7 @@ include_once 'DataBase.php';
 					AND v.VEN_FECHA BETWEEN '$startDate' and '$endDate'
 					AND dv.ID_VENTA=v.VEN_ID					
 					GROUP BY v.VEN_ID
-					ORDER BY v.VEN_ID ASC";
+					ORDER BY v.VEN_ID DESC";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -59,11 +59,11 @@ include_once 'DataBase.php';
 					WHERE dv.ID_ARTICULO=a.ART_ID
 					AND dv.ID_VENTA='$id'";
 			$result = $this->connect()->query($sql);
-			if($result->num_rows>0){
-				return $result;
-			}else{
-				return false;
-			}
+			// if($result->num_rows>0){
+			// }else{
+			// 	return false;
+			// }
+			return $result;
 		}
 		public function updateSale($date, $idSale, $idCli, $total, $idProd, $quantity){
 			$sql = "UPDATE venta 

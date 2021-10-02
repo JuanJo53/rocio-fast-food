@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAST-VOL | Ventas</title>
+    <title>Rocio Fast Food | Ventas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -50,7 +50,7 @@
                 session_start();    
                 echo "<h4 style='color:white;margin-right:10px;'>¡Hola ". $_SESSION['USUARIO']."!</h4>";
             ?>
-			<a class="navbar-brand" href="#">BAST-VOL</a>
+			<a class="navbar-brand" href="#">Rocio Fast Food</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -206,7 +206,7 @@
 	</div>
 
     <!-- New Sale Modal -->
-    <div class="modal fade" id="newSaleModal" tabindex="-1" aria-labelledby="newSaleModal" aria-hidden="true">
+    <div class="modal fade newSaleModal" id="newSaleModal" name='newSaleModal' tabindex="-1" aria-labelledby="newSaleModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -252,9 +252,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer">                        
+                        <span class='badge bg-warning text-dark'>¡AL REGISTRAR LA VENTA SE DESCARGARÁ UN PDF CON LA FACTURA!</span>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success submitNewSale">Registrar</button>
+                        <button type="button" class="btn btn-success submitNewSale" id="submitNewSale" name="submitNewSale">Registrar</button>
                     </div>
                 </form>
             </div>
@@ -339,6 +340,22 @@
         </div>
     </div>
     <!-- Delete Sale Modal -->
+
+    <!-- Download Sale Invoice Modal -->
+    <div class="modal fade downloadSaleInvoiceModal" id="downloadSaleInvoiceModal" name="downloadSaleInvoiceModal" data-bs-backdrop="static"data-bs-keyboard="false" tabindex="-1" aria-labelledby="downloadSaleInvoiceModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">¡Exito al realizar la venta!</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title message_success" id="exampleModalLabel">Descargue la factura para imprimirla</h4>
+                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" type='button' role='button' id='downloadSaleInvoice' name='downloadSaleInvoice'>Descargar Factura</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Download Sale Invoice Modal -->
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -394,8 +411,10 @@
                         url:"../controller/sales/newSale.php", 
                         type: "POST",
                         data: { saleCliId: clientId, prodsList: JSON.stringify(prodsList)},
-
-                    }) 
+                    });
+                    
+                    $(".newSaleModal").modal('hide');
+                    $(".downloadSaleInvoiceModal").modal('show');
                 }else{
                     console.log('Formulario no valido!');
                 }
@@ -451,6 +470,22 @@
                 var saleId=$('#saleIdDet').val();
                 var page = encodeURI("../controller/sales/singleSaleDetailReport.php?saleId="+saleId);
                 window.location = page;
+            });
+            $('#downloadSaleInvoice').click(function(){
+                var page = encodeURI("../controller/sales/saleInvoice.php");
+                window.location = page;
+                $(".downloadSaleInvoiceModal").modal('hide');
+                setTimeout(
+                    function() 
+                    {
+                        location.reload();
+                    }, 1000
+                );
+            });
+            $('#submitNewSale').click(function(){
+                console.log('hols');
+                $(".newSaleModal").modal('hide');
+                $(".downloadSaleInvoiceModal").modal('show');
             });
         });
     </script>
