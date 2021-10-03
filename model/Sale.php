@@ -39,7 +39,7 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getSaleById($id){
-			$sql = "SELECT v.VEN_ID, u.USR_NOMBRES, c.CLI_NOMBRE, a.ART_NOMBRE, dv.DV_CANTIDAD, v.VEN_TOTAL, v.VEN_FECHA 
+			$sql = "SELECT v.VEN_ID, u.USR_NOMBRES,c.CLI_NIT, c.CLI_NOMBRE, a.ART_NOMBRE, dv.DV_CANTIDAD, v.VEN_TOTAL, v.VEN_FECHA 
 					FROM venta v, detalleventa dv, usuario u, cliente c, articulo a
 					WHERE v.VEN_ID=dv.ID_VENTA 
 					AND v.ID_USUARIO=u.USR_ID 

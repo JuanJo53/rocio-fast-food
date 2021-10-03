@@ -16,6 +16,7 @@
         if(!empty($saleData)){
             while($row=$saleData->fetch_array()){
                 $client=$row['CLI_NOMBRE'];
+                $clientNit=$row['CLI_NIT'];
                 $employee=$row['USR_NOMBRES'];
                 $saleTotal=$row['VEN_TOTAL'];
                 $saleDate=$row['VEN_FECHA'];
@@ -23,11 +24,13 @@
         }
 
         $salesHtml="
-        <center><h1>FACTURA VENTA #".$lastSaleId."</h1></center>
-        <center><p><b>Cliente: </b>".$client."<b>&nbsp;&nbsp;&nbsp;&nbsp; Empleado: </b>".$employee."</p></center>
+        <center><h1>Rocio Fast Food</h1></center>
+        <center><h4>FACTURA VENTA #".$lastSaleId."</h4></center>
+        <center><p><b>Cliente: </b>".$client."<b>&nbsp;&nbsp;&nbsp;&nbsp; NIT/CI: </b>".$clientNit."</p></center>
+        <center><p><b>Empleado: </b>".$employee."</p></center>
         <center><p><b>Total: </b>".$saleTotal." Bs.<b>&nbsp;&nbsp;&nbsp;&nbsp; Fecha: </b>".date("d/m/Y", strtotime($saleDate))."</p></center>
         <center><h2>Detalle de Productos</h2></center>
-        <table>
+        <center><table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -52,7 +55,8 @@
         }
         $salesHtml.="
             </tbody>
-        </table>";
+        </table></center>";
+        $salesHtml.="<center><img src='fakeQR.png' alt='fakeQR'></center>";
         return $salesHtml;
     }
     
