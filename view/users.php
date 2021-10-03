@@ -62,7 +62,7 @@
 						<a class="nav-link" href="home.php">Inicio</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="products.php">Platos</a>
+						<a class="nav-link active" href="products.php">Productos</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="clients.php">Clientes</a>
@@ -72,9 +72,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            echo "<li class='nav-item'>
+                            /*echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";
+                                </li>";*/
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";

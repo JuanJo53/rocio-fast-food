@@ -19,6 +19,15 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
+		public function getClientByNit($nit){
+			$sql = "SELECT * FROM cliente WHERE CLI_NIT = '$nit'";
+			$result = $this->connect()->query($sql);
+			if($result->num_rows>0){
+				return $result;
+			}else{
+				return false;
+			}
+		}
 		public function updateClient($id,$name,$nit,$phone,$email){
 			$sql = "UPDATE cliente SET CLI_NOMBRE='$name',CLI_NIT='$nit',CLI_TELEFONO='$phone',CLI_CORREO='$email'	
 					WHERE CLI_ID='$id'";

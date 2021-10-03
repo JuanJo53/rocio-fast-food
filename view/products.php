@@ -60,7 +60,7 @@
 						<a class="nav-link" href="home.php">Inicio</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="products.php">Platos</a>
+						<a class="nav-link active" href="products.php">Productos</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="clients.php">Clientes</a>
@@ -70,9 +70,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            echo "<li class='nav-item'>
+                            /*echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";
+                                </li>";*/
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -111,7 +111,7 @@
 			<div class="col text-center text-uppercase">
                 <div class="home-title">
                     <h5>Gestiona los</h5>
-                    <h1>Articulos</h1>
+                    <h1>Productos</h1>
                 </div>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
                 </svg>
-                Nuevo Articulo
+                Nuevo Producto
             </button>
         </div>
         <div class="row g-4">
@@ -154,14 +154,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Articulo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method='post' action='../controller/products/newProduct.php'>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="prod_name" class="col-form-label">Nombre del Articulo:</label>
-                            <input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="Nuevo Articulo" required>
+                            <label for="prod_name" class="col-form-label">Nombre del Producto:</label>
+                            <input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="Nuevo Producto" required>
                         </div>
                         <div class="mb-3">
                             <label for="prod_idCat" class="col-form-label">Categoria:</label>
@@ -205,7 +205,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Articulo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method='post' action="../controller/products/updateProduct.php">
@@ -215,8 +215,8 @@
                             <input type="text" class="form-control" id="prod_idE" name="prod_idE" readonly>
                         </div>
                         <div class="mb-3 nameInput">
-                            <label for="prod_nameE" class="col-form-label">Nombre del Articulo:</label>
-                            <input type="text" class="form-control" id="prod_nameE" name="prod_nameE" placeholder="Nuevo Articulo" required>
+                            <label for="prod_nameE" class="col-form-label">Nombre del Producto:</label>
+                            <input type="text" class="form-control" id="prod_nameE" name="prod_nameE" placeholder="Nuevo Producto" required>
                         </div>
                         <div class="mb-3 catInput">
                             <label for="prod_idCatE" class="col-form-label">Categoria:</label>
@@ -260,16 +260,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title message_error" id="exampleModalLabel">¡Al eliminar este articulo podria afectar algunas ventas registradas!</h4>
+                    <h4 class="modal-title message_error" id="exampleModalLabel">¡Al eliminar este Producto podria afectar algunas ventas registradas!</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method='post' action="../controller/products/deleteProduct.php">
                     <div class="modal-body">
                         <div class="mb-3 idDelInput">        
-                            <label for="prod_idD" class="col-form-label">ID del articulo por eliminar:</label>
+                            <label for="prod_idD" class="col-form-label">ID del Producto por eliminar:</label>
                             <input type="text" class="form-control" id="prod_idD" name="prod_idD" readonly>
                         </div>
-                        <h5>¿Esta seguro que desea eliminar este articulo?</h5>
+                        <h5>¿Esta seguro que desea eliminar este Producto?</h5>
                         <h1 class='badge bg-warning text-dark'>¡Esta accion no se puede deshacer!</h1>
                     </div>
                     <div class="modal-footer">

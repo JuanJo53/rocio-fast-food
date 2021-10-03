@@ -68,7 +68,7 @@
 						<a class="nav-link" href="home.php">Inicio</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="products.php">Platos</a>
+						<a class="nav-link" href="products.php">Productos</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="clients.php">Clientes</a>
@@ -78,9 +78,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            echo "<li class='nav-item'>
+                            /*echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";
+                                </li>";*/
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -216,14 +216,21 @@
                 <form class="needs-validation" id='newSaleForm' novalidate>
                     <div class="modal-body newSaleBody">
                         <div class="mb-3">
-                            <label for="saleCliId" class="col-form-label">NIT Cliente:</label>
-                            <select class="form-select" aria-label="Clients select" id="saleCliId" name="saleCliId" required>
-                                <option value="" selected disabled>Ninguna</option>
-                                <?php
-                                    include_once '../controller/sales/getProdsAndClis.php';
-                                    echo showClients();
-                                ?>
-                            </select>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="saleCliId" class="col-form-label">NIT Cliente:</label>
+                                    <input type="number" min="1" class="form-control" id="client_nit_search" name="client_nit_search" placeholder="0000000" required>
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="startDate" class="col-form-label">Buscar</label>
+                                    <button class="btn btn-primary" type='button' role="button" id='searchClient' name='searchClient'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </button>                                    
+                                </div>
+                            </div>
+                            <div class="row" id="clientSearchResponse" name="clientSearchResponse"></div>
                         </div>
                         <div class="mb-3 row">
                             <div class="col">
@@ -235,7 +242,8 @@
                                     <label for="saleProdIdE1" class="col-form-label">Articulo:</label>
                                     <select class="form-select" aria-label="Products select" id="saleProdIdE1" name="saleProdIdE1" required>
                                         <option value="" selected disabled>Ninguna</option>
-                                        <?php
+                                        <?php                                        
+                                            include_once '../controller/sales/getProdsAndClis.php';
                                             echo showProducts();
                                         ?>
                                     </select>
@@ -451,6 +459,19 @@
                     success: function(response){
                         $( "#salesTable" ).html('');
                         $( "#salesTable" ).append(response);
+                    }
+                });
+            });
+            $('#searchClient').click(function(){
+                var clientNit=$('#client_nit_search').val();
+                $.ajax({
+                    url:  '../controller/clients/searchClient.php',
+                    type: "POST",
+                    data: {clientNit: clientNit},
+                    success: function(response){
+                        console.log(response);
+                        $( "#clientSearchResponse" ).html('');
+                        $( "#clientSearchResponse" ).append(response);
                     }
                 });
             });

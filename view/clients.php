@@ -58,7 +58,7 @@
 						<a class="nav-link" href="home.php">Inicio</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " href="products.php">Platos</a>
+						<a class="nav-link " href="products.php">Productos</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link active" href="clients.php">Clientes</a>
@@ -68,9 +68,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            echo "<li class='nav-item'>
+                            /*echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";
+                                </li>";*/
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -162,7 +162,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="client_nit" class="col-form-label">NIT del Cliente:</label>
-                            <input type="number" class="form-control" id="client_nit" name="client_nit" placeholder="0000000" required>
+                            <input type="number" min="1" class="form-control" id="client_nit" name="client_nit" placeholder="0000000" required>
                         </div>
                         <div class="mb-3">
                             <label for="client_phone" class="col-form-label">Telefono del Cliente:</label>
@@ -203,7 +203,7 @@
                         </div>
                         <div class="mb-3 nitInput">
                             <label for="client_nitE" class="col-form-label">NIT del Cliente:</label>
-                            <input type="number" class="form-control" id="client_nitE" name="client_nitE" placeholder="000000000" required>
+                            <input type="number" min="1" class="form-control" id="client_nitE" name="client_nitE" placeholder="000000000" required>
                         </div>
                         <div class="mb-3 phoneInput">
                             <label for="client_phoneE" class="col-form-label">Telefono del Cliente:</label>
