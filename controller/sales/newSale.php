@@ -1,15 +1,24 @@
 <?php
     include '../../model/Sale.php';
     include '../../model/Product.php';
+    include '../../model/Client.php';
 
     session_start(); 
     $userId=$_SESSION['CODIGO'];
-    $clientId=$_POST['saleCliId'];
+    $clientNit=$_POST['saleCliId'];
     $prodsData=$_POST['prodsList'];
     $products=json_decode($prodsData);    
     // $date=date('Y-m-d');
     $date=date('Y-m-d', strtotime('-1 day'));
     $total=0;
+
+    $client = new Client;
+    $clientResponse = $client->getClientByNit($clientNit);
+    if(!empty($clientResponse)){
+        while($row=$clientResponse->fetch_array()){
+            $clientId=$row['CLI_ID'];
+        }
+    }
 
     $sale = new Sale;
     $newSaleResult = $sale->newSale($date,$userId,$clientId,$total);

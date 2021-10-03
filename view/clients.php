@@ -166,11 +166,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="client_phone" class="col-form-label">Telefono del Cliente:</label>
-                            <input type="number" class="form-control" id="client_phone" name="client_phone" placeholder="22222222" required>
+                            <input type="number" class="form-control" id="client_phone" name="client_phone" placeholder="22222222">
                         </div>
                         <div class="mb-3">
                             <label for="client_email" class="col-form-label">Correo del Cliente:</label>
-                            <input type="email" class="form-control" id="client_email" name="client_email" placeholder="cliente@cliente.com" required>
+                            <input type="email" class="form-control" id="client_email" name="client_email" placeholder="cliente@cliente.com">
                         </div>
                     </div>
                     <div class="modal-footer">

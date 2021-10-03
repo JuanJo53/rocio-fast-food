@@ -25,7 +25,9 @@
 
         $salesHtml="
         <center><h1>Rocio Fast Food</h1></center>
-        <center><h4>FACTURA VENTA #".$lastSaleId."</h4></center>
+        <center><p><b>Direccion: </b>av. Republica Nro. 390, Zona villa victoria</p></center>
+        <center><p><b>NIT: </b>3355428017</p></center>
+        <center><p><b>Nro. de FACTURA: </b>".$lastSaleId."</p></center>
         <center><p><b>Cliente: </b>".$client."<b>&nbsp;&nbsp;&nbsp;&nbsp; NIT/CI: </b>".$clientNit."</p></center>
         <center><p><b>Empleado: </b>".$employee."</p></center>
         <center><p><b>Total: </b>".$saleTotal." Bs.<b>&nbsp;&nbsp;&nbsp;&nbsp; Fecha: </b>".date("d/m/Y", strtotime($saleDate))."</p></center>

@@ -398,7 +398,7 @@
                     newProd={"prodId":prodId, "quantity":quantity};
                     prodsList.push(newProd);
                 }
-                clientId=$('#saleCliId').val();
+                clientId=$('#client_nit_search').val();
                 
                 var forms = document.querySelectorAll('.needs-validation');
 
