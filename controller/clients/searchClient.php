@@ -13,9 +13,9 @@
             while($row=$clientResponse->fetch_array()){
                 $clientName=$row['CLI_NOMBRE'];
             }
-            $salesHtml.="<tr><th style='color:green';>¡Cliente ".$clientName." esta registrado!</th></tr>";            
+            $salesHtml.=$clientName;            
         }else{
-            $salesHtml.="<tr><th style='color:red';>¡Cliente NO Registrado!</th></tr>";
+            $salesHtml.="";
         }
         return $salesHtml;
     }

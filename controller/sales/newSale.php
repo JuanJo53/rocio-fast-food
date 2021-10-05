@@ -50,6 +50,6 @@
         }
     }
     $newSaleTotalUpdateResponse = $sale->updateLastSaleTotal($lastSaleId,$total);
-
+    
     // header('Location: ../../controller/sales/saleInvoice.php');
 ?>

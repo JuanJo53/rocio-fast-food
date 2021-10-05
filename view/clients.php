@@ -154,7 +154,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method='post' action='../controller/clients/newClient.php'>
+                <form>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="client_name" class="col-form-label">Nombre del Cliente:</label>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="button" id="addClient" name="addClient" class="btn btn-success">Registrar</button>
                     </div>
                 </form>
             </div>
@@ -250,5 +250,24 @@
         </div>
     </div>
     <!-- Delete Client Modal -->
+
+    <script>
+        $(document).ready(function () {
+            $('#addClient').click(function(){
+                var newClientNit=$('#client_nit').val();
+                var newClientName=$('#client_name').val();
+                var newClientPhone=$('#client_phone').val();
+                var newClientMail=$('#client_email').val();
+                $.ajax({
+                    url:  '../controller/clients/newClient.php',
+                    type: "POST",
+                    data: {client_name: newClientName, client_nit: newClientNit, client_phone: newClientPhone, client_email: newClientMail},
+                    success: function(response){
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
