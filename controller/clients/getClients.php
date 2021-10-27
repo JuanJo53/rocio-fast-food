@@ -11,8 +11,6 @@
                     <th scope='row'>".$row['CLI_ID']."</th>
                     <td>".$row['CLI_NOMBRE']."</td>
                     <td>".$row['CLI_NIT']."</td>
-                    <td>".$row['CLI_TELEFONO']."</td>
-                    <td>".$row['CLI_CORREO']."</td>
                     <td>
                         <button class='btn btn-info openEditModal' data-bs-toggle='modal' data-bs-target='#editClientModal' role='button' type='submit' id='cli_idEdit' name='cli_idEdit' data-id='".$row['CLI_ID']."'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pencil' viewBox='0 0 16 16'>

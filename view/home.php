@@ -45,9 +45,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            /*echo "<li class='nav-item'>
+                            echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";*/
+                                </li>";
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -56,23 +56,6 @@
                                 </li>";
                         }
                     ?>
-					<!-- <li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdown"
-							role="button"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							Nuestro Credo
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="staticPages/finalidadFe.html">Finalidad de la Fe</a>
-							<a class="dropdown-item" href="staticPages/proyeccionFe.html">Proyeccion de la Fe</a>
-						</div>
-					</li> -->
 				</ul>
                 <form method="post" action="../controller/logout.php">
                     <button class="btn btn-outline-danger text-md- ms-5" type="submit">Cerrar Sesion</button>

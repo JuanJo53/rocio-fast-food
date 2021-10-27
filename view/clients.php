@@ -68,9 +68,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            /*echo "<li class='nav-item'>
+                            echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";*/
+                                </li>";
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -79,23 +79,6 @@
                                 </li>";
                         }
                     ?>
-					<!-- <li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdown"
-							role="button"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							Nuestro Credo
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="staticPages/finalidadFe.html">Finalidad de la Fe</a>
-							<a class="dropdown-item" href="staticPages/proyeccionFe.html">Proyeccion de la Fe</a>
-						</div>
-					</li> -->
 				</ul>
                 <form method="post" action="../controller/logout.php">
                     <button class="btn btn-outline-danger text-md- ms-5" type="submit">Cerrar Sesion</button>
@@ -129,8 +112,6 @@
                             <th scope="col">#</th>
                             <th scope="col">NOMBRE</th>
                             <th scope="col">NIT</th>
-                            <th scope="col">TELEFONO</th>
-                            <th scope="col">CORREO</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Eliminar</th>
                         </tr>
@@ -164,14 +145,6 @@
                             <label for="client_nit" class="col-form-label">NIT del Cliente:</label>
                             <input type="number" min="1" class="form-control" id="client_nit" name="client_nit" placeholder="0000000" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="client_phone" class="col-form-label">Telefono del Cliente:</label>
-                            <input type="number" class="form-control" id="client_phone" name="client_phone" placeholder="22222222">
-                        </div>
-                        <div class="mb-3">
-                            <label for="client_email" class="col-form-label">Correo del Cliente:</label>
-                            <input type="email" class="form-control" id="client_email" name="client_email" placeholder="cliente@cliente.com">
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -204,14 +177,6 @@
                         <div class="mb-3 nitInput">
                             <label for="client_nitE" class="col-form-label">NIT del Cliente:</label>
                             <input type="number" min="1" class="form-control" id="client_nitE" name="client_nitE" placeholder="000000000" required>
-                        </div>
-                        <div class="mb-3 phoneInput">
-                            <label for="client_phoneE" class="col-form-label">Telefono del Cliente:</label>
-                            <input type="number" class="form-control" id="client_phoneE" name="client_phoneE" placeholder="22222222" required>
-                        </div>
-                        <div class="mb-3 emailInput">
-                            <label for="client_emailE" class="col-form-label">Correo del Cliente:</label>
-                            <input type="email" class="form-control" id="client_emailE" name="client_emailE" placeholder="cliente@cliente.com" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -256,12 +221,10 @@
             $('#addClient').click(function(){
                 var newClientNit=$('#client_nit').val();
                 var newClientName=$('#client_name').val();
-                var newClientPhone=$('#client_phone').val();
-                var newClientMail=$('#client_email').val();
                 $.ajax({
                     url:  '../controller/clients/newClient.php',
                     type: "POST",
-                    data: {client_name: newClientName, client_nit: newClientNit, client_phone: newClientPhone, client_email: newClientMail},
+                    data: {client_name: newClientName, client_nit: newClientNit},
                     success: function(response){
                         location.reload();
                     }

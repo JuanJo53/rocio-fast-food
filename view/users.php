@@ -19,10 +19,9 @@
             $.getJSON('../controller/users/getUserDetails.php',{'usr_idEdit':id} ,function( data ) {
                 console.log(data);
                 $(".nameInput #usr_namee").val( data.USR_NOMBRES );
-                $(".lastnameInput #usr_last_namese").val( data.USR_APELLIDOS );
                 $(".phoneInput #usr_phonee").val( data.USR_TELEFONO );
                 $(".emailInput #usr_emaile").val( data.USR_CORREO );
-                $(".usernameInput #usr_usernamee").val( data.USR_USER );
+                $(".directionInput #usr_directe").val( data.USR_APELLIDOS );
                 $(".usernameInput #usr_usernamee").val( data.USR_USER );
                 $(".typeInput #usr_typee").val( data.USR_TIPO );
                 $(".passInput #usr_passworde").val( data.USR_PASSWORD );
@@ -72,9 +71,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            /*echo "<li class='nav-item'>
+                            echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";*/
+                                </li>";
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -83,23 +82,6 @@
                                 </li>";
                         }
                     ?>
-					<!-- <li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdown"
-							role="button"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							Nuestro Credo
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="staticPages/finalidadFe.html">Finalidad de la Fe</a>
-							<a class="dropdown-item" href="staticPages/proyeccionFe.html">Proyeccion de la Fe</a>
-						</div>
-					</li> -->
 				</ul>
                 <form method="post" action="../controller/logout.php">
                     <button class="btn btn-outline-danger text-md- ms-5" type="submit">Cerrar Sesion</button>
@@ -131,12 +113,12 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">NOMBRES</th>
-                            <th scope="col">APELLIDOS</th>
+                            <th scope="col">NOMBRE</th>
                             <th scope="col">TELEFONO</th>
                             <th scope="col">CORREO</th>
+                            <th scope="col">DIRECCION</th>
                             <th scope="col">NOMBRE DE USUARIO</th>
-                            <th scope="col">TIPO</th>
+                            <th scope="col">ROL</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Eliminar</th>
                         </tr>
@@ -163,12 +145,8 @@
             <form method='post' action="../controller/users/newUser.php">
             <div class="modal-body">
                     <div class="mb-3">
-                        <label for="usr_name" class="col-form-label">Nombres:</label>
+                        <label for="usr_name" class="col-form-label">Nombre Completo:</label>
                         <input type="text" class="form-control" id="usr_name" name="usr_name" placeholder="Nuevo Usuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="usr_last_names" class="col-form-label">Apellidos del Usuario:</label>
-                        <input type="text" class="form-control" id="usr_last_names" name="usr_last_names" placeholder="Perez" required>
                     </div>
                     <div class="mb-3">
                         <label for="usr_phone" class="col-form-label">Telefono del Usuario:</label>
@@ -179,8 +157,12 @@
                         <input type="email" class="form-control" id="usr_email" name="usr_email" placeholder="cliente@cliente.com" required>
                     </div>
                     <div class="mb-3">
+                        <label for="usr_direct" class="col-form-label">Direccion:</label>
+                        <input type="text" class="form-control" id="usr_direct" name="usr_direct" placeholder="c/ Montalgo Nro.123" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="usr_username" class="col-form-label">Nombre de Usuario:</label>
-                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="cliente@cliente.com" required>
+                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="cliene123" required>
                     </div>
                     <div class="mb-3">
                         <label for="usr_password" class="col-form-label">Contraseña:</label>
@@ -220,12 +202,8 @@
                         <input type="text" class="form-control" id="usr_idE" name="usr_idE" readonly>
                     </div>
                     <div class="mb-3 nameInput">
-                        <label for="usr_namee" class="col-form-label">Nombres:</label>
+                        <label for="usr_namee" class="col-form-label">Nombre Completo:</label>
                         <input type="text" class="form-control" id="usr_namee" name="usr_namee" placeholder="Nuevo Usuario" required>
-                    </div>
-                    <div class="mb-3 lastnameInput">
-                        <label for="usr_last_namese" class="col-form-label">Apellidos del Usuario:</label>
-                        <input type="text" class="form-control" id="usr_last_namese" name="usr_last_namese" placeholder="Perez" required>
                     </div>
                     <div class="mb-3 phoneInput">
                         <label for="usr_phonee" class="col-form-label">Telefono del Usuario:</label>
@@ -234,6 +212,10 @@
                     <div class="mb-3 emailInput">
                         <label for="usr_emaile" class="col-form-label">Correo del Usuario:</label>
                         <input type="email" class="form-control" id="usr_emaile" name="usr_emaile" placeholder="cliente@cliente.com" required>
+                    </div>
+                    <div class="mb-3 directionInput">
+                        <label for="usr_directe" class="col-form-label">Direccion:</label>
+                        <input type="text" class="form-control" id="usr_directe" name="usr_directe" placeholder="c/ Montalgo Nro.123" required>
                     </div>
                     <div class="mb-3 usernameInput">
                         <label for="usr_usernamee" class="col-form-label">Nombre de Usuario:</label>

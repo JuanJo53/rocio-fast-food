@@ -28,8 +28,8 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
-		public function updateClient($id,$name,$nit,$phone,$email){
-			$sql = "UPDATE cliente SET CLI_NOMBRE='$name',CLI_NIT='$nit',CLI_TELEFONO='$phone',CLI_CORREO='$email'	
+		public function updateClient($id,$name,$nit){
+			$sql = "UPDATE cliente SET CLI_NOMBRE='$name',CLI_NIT='$nit'
 					WHERE CLI_ID='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
@@ -43,9 +43,9 @@ include_once 'DataBase.php';
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
-		public function newClient($name,$nit,$phone,$email){
+		public function newClient($name,$nit){
 			$sql = "INSERT INTO cliente(CLI_NOMBRE, CLI_NIT, CLI_TELEFONO, CLI_CORREO) 
-					VALUES ('$name','$nit','$phone','$email')";
+					VALUES ('$name','$nit')";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

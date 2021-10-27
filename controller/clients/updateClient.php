@@ -5,11 +5,9 @@
         $cliId=$_POST['cli_idE'];
         $name=$_POST['client_nameE'];
         $nit=$_POST['client_nitE'];
-        $phone=$_POST['client_phoneE'];
-        $email=$_POST['client_emailE'];
     
         $client = new Client;
-        $response = $client->updateClient($cliId,$name,$nit,$phone,$email);
+        $response = $client->updateClient($cliId,$name,$nit);
         return $response;
     }
     echo updateClientData();

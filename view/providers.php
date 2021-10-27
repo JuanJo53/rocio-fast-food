@@ -21,8 +21,7 @@
                 $(".nameInput #prov_nameEdit").val( data.PRO_NOMBRE );
                 $(".emailInput #prov_emailEdit").val( data.PRO_CORREO );
                 $(".phoneInput #prov_phoneEdit").val( data.PRO_TELEFONO );
-                $(".cityInput #prov_cityEdit").val( data.PRO_CIUDAD );
-                $(".countryInput #prov_countryEdit").val( data.PRO_PAIS );
+                $(".directionInput #prov_directEdit").val( data.PRO_CIUDAD );
             });
         });
     </script>
@@ -69,9 +68,9 @@
 					</li>
                     <?php
                         if($_SESSION['TIPO']=='admin'){
-                            /*echo "<li class='nav-item'>
+                            echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";*/
+                                </li>";
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='categories.php'>Categorias</a>
                                 </li>";
@@ -80,23 +79,6 @@
                                 </li>";
                         }
                     ?>
-					<!-- <li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdown"
-							role="button"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							Nuestro Credo
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="staticPages/finalidadFe.html">Finalidad de la Fe</a>
-							<a class="dropdown-item" href="staticPages/proyeccionFe.html">Proyeccion de la Fe</a>
-						</div>
-					</li> -->
 				</ul>
                 <form method="post" action="../controller/logout.php">
                     <button class="btn btn-outline-danger text-md- ms-5" type="submit">Cerrar Sesion</button>
@@ -131,8 +113,7 @@
                             <th scope="col">NOMBRE DEL PROVEEDOR</th>
                             <th scope="col">CORREO ELECTRONICO</th>
                             <th scope="col">TELEFONO</th>
-                            <th scope="col">CIUDAD</th>
-                            <th scope="col">PAIS</th>
+                            <th scope="col">DIRECCION</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Eliminar</th>
                         </tr>
@@ -171,12 +152,8 @@
                                 <input type="number" class="form-control" id="prov_phone" name="prov_phone" placeholder="222222222" required>
                             </div>
                             <div class="mb-3">
-                                <label for="prov_city" class="col-form-label">Ciudad:</label>
-                                <input type="text" class="form-control" id="prov_city" name="prov_city" placeholder="Ciudad Maravilla" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="prov_country" class="col-form-label">Pais:</label>
-                                <input type="text" class="form-control" id="prov_country" name="prov_country" placeholder="Pais Algo" required>
+                                <label for="prov_direct" class="col-form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="prov_direct" name="prov_direct" placeholder="Ciudad Maravilla c/London Nro. 140" required>
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -215,13 +192,9 @@
                         <label for="prov_phoneEdit" class="col-form-label">Telefono:</label>
                         <input type="number" class="form-control" id="prov_phoneEdit" name="prov_phoneEdit" placeholder="222222222" required>
                     </div>
-                    <div class="mb-3 cityInput">
-                        <label for="prov_cityEdit" class="col-form-label">Ciudad:</label>
-                        <input type="text" class="form-control" id="prov_cityEdit" name="prov_cityEdit" placeholder="Ciudad Maravilla" required>
-                    </div>
-                    <div class="mb-3 countryInput">
-                        <label for="prov_countryEdit" class="col-form-label">Pais:</label>
-                        <input type="text" class="form-control" id="prov_countryEdit" name="prov_countryEdit" placeholder="Pais Algo" required>
+                    <div class="mb-3 directionInput">
+                        <label for="prov_directE" class="col-form-label">Direccion:</label>
+                        <input type="text" class="form-control" id="prov_directEdit" name="prov_directE" placeholder="Ciudad Maravilla c/London Nro. 140" required>
                     </div>
                 </div>
                 <div class="modal-footer">
