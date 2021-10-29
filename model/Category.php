@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Category extends DB{
 		public function getAllCategories(){
-			$sql = "SELECT * FROM categoria";
+			$sql = "SELECT * FROM categorias";
 			$result = $this->connect()->query($sql);
 			$numrows = $result->num_rows;
 			if($result->num_rows>0){
@@ -12,7 +12,7 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getCategoryById($id){
-			$sql = "SELECT * FROM categoria WHERE CAT_ID = '$id'";
+			$sql = "SELECT * FROM categorias WHERE cat_id = '$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -22,7 +22,7 @@ include_once 'DataBase.php';
 		}
 
 		public function updateCategory($id,$name){
-			$sql = "UPDATE categoria SET CAT_NOMBRE='$name'	WHERE CAT_ID='$id'";
+			$sql = "UPDATE categorias SET cat_categoria='$name'	WHERE cat_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -31,12 +31,12 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteCategory($id){
-			$sql = "DELETE FROM categoria WHERE CAT_ID = '$id'";
+			$sql = "UPDATE categorias SET cat_estado=0 WHERE cat_id='$id'";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function newCategory($name){
-			$sql = "INSERT INTO categoria (CAT_NOMBRE) VALUES ('$name')";
+			$sql = "INSERT INTO categorias (cat_categoria,cat_estado) VALUES ('$name',1)";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

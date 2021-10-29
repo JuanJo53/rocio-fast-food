@@ -9,7 +9,7 @@
             $this->server = 'localhost';
             $this->user = 'root';
             $this->password = '';
-            $this->db = 'bastvol';
+            $this->db = 'rocio_fast_food';
         }
 
         public function connect(){

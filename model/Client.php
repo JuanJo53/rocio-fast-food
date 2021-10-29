@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Client extends DB{
 		public function getAllClients(){
-			$sql = "SELECT * FROM cliente";
+			$sql = "SELECT * FROM clientes";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -11,7 +11,7 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getClientById($id){
-			$sql = "SELECT * FROM cliente WHERE CLI_ID = '$id'";
+			$sql = "SELECT * FROM clientes WHERE cl_id = '$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -20,7 +20,7 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getClientByNit($nit){
-			$sql = "SELECT * FROM cliente WHERE CLI_NIT = '$nit'";
+			$sql = "SELECT * FROM clientes WHERE cl_documento = '$nit'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -29,8 +29,8 @@ include_once 'DataBase.php';
 			}
 		}
 		public function updateClient($id,$name,$nit){
-			$sql = "UPDATE cliente SET CLI_NOMBRE='$name',CLI_NIT='$nit'
-					WHERE CLI_ID='$id'";
+			$sql = "UPDATE clientes SET cl_cliente='$name',cl_documento='$nit'
+					WHERE cl_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -39,12 +39,12 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteClient($id){
-			$sql = "DELETE FROM cliente WHERE CLI_ID = '$id'";
+			$sql = "DELETE FROM clientes WHERE cl_id = '$id'";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function newClient($name,$nit){
-			$sql = "INSERT INTO cliente(CLI_NOMBRE, CLI_NIT, CLI_TELEFONO, CLI_CORREO) 
+			$sql = "INSERT INTO clientes(cl_cliente, cl_documento) 
 					VALUES ('$name','$nit')";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
