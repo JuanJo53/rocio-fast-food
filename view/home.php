@@ -44,7 +44,7 @@
 						<a class="nav-link" href="sales.php">Ventas</a>
 					</li>
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
                                 </li>";
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <?php
-                if($_SESSION['TIPO']=='admin'){
+                if($_SESSION['TIPO']==1){
                     echo "<div class='col'>
                             <div class='card'>
                             <svg class='card-img-top' xmlns='http://www.w3.org/2000/svg' width='150' height='150' fill='currentColor' class='bi bi-truck' viewBox='0 0 16 16'>

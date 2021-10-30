@@ -65,7 +65,7 @@
 						<a class="nav-link" href="sales.php">Ventas</a>
 					</li>
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
                                 </li>";

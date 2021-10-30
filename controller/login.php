@@ -11,12 +11,12 @@
     if ($result) { 
         if ($result->num_rows > 0) { 
             while ($row = $result->fetch_array()) { 
-                if($password==$row['USR_PASSWORD']){
-                    $cod_usuario=$row['USR_ID'];                          
+                if($password==$row['usr_password']){
+                    $cod_usuario=$row['usr_id'];                          
                     $_SESSION['CODIGO']=$cod_usuario;
                     $_SESSION['USUARIO']=$username;
-                    $_SESSION['PASSWORD']=$row['USR_PASSWORD'];
-                    $_SESSION['TIPO']=$row['USR_TIPO'];
+                    $_SESSION['PASSWORD']=$row['usr_password'];
+                    $_SESSION['TIPO']=$row['rol_id'];
                     $_SESSION['LOGIN_STATUS']='exito';
                     header('Location: ../index.php');
                 }else{                    

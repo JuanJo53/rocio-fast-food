@@ -77,7 +77,7 @@
 						<a class="nav-link active" href="sales.php">Ventas</a>
 					</li>
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "<li class='nav-item'>
                                     <a class='nav-link' href='providers.php'>Proveedores</a>
                                 </li>";
@@ -134,7 +134,7 @@
                 </div>
                 <div class="col-md-3">
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "
                             <button class='btn btn-success' type='button' role='button' id='downloadReport' name='downloadReport'>
                                 Descargar Reporte Excel
@@ -148,7 +148,7 @@
                 </div>
                 <div class="col-md-3">
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "
                             <button class='btn btn-primary' type='button' role='button' id='downloadReportDetails' name='downloadReportDetails'>
                                 Descargar Reporte Detallado Excel
@@ -175,7 +175,7 @@
                             <th scope="col">FECHA</th>
                             <th scope='col'>Detalle</th>
                             <?php
-                                if($_SESSION['TIPO']=='admin'){
+                                if($_SESSION['TIPO']==1){
                                     echo "<th scope='col'>Eliminar</th>";
                                 }
                             ?>
@@ -288,7 +288,7 @@
                 </div>
                 <div class="modal-footer">
                     <?php
-                        if($_SESSION['TIPO']=='admin'){
+                        if($_SESSION['TIPO']==1){
                             echo "
                             <button class='btn btn-success' type='button' role='button' id='downloadSingleSaleReportDetails' name='downloadSingleSaleReportDetails'>
                                 Descargar Detalle Excel
