@@ -2,10 +2,10 @@
 include_once 'DataBase.php';
 	class Product extends DB{
 		public function getAllProducts(){
-			$sql = "SELECT a.ART_ID, a.ART_NOMBRE, c.CAT_NOMBRE, b.PRO_NOMBRE, a.ART_PRECIO, a.ART_STOCK 
-					FROM articulo a, proveedor b, categoria c
-					WHERE a.ID_CATEGORIA=c.CAT_ID AND a.ID_PROVEEDOR=b.PRO_ID
-					ORDER BY a.ART_ID ASC";
+			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_categoria, b.prov_proveedor, a.prod_precio, a.prod_existencia 
+					FROM productos a, proveedores b, categorias c
+					WHERE a.cat_id=c.cat_id AND a.prov_id=b.prov_id AND a.prod_estado=1
+					ORDER BY a.prod_id ASC";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -14,12 +14,13 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getAllAvailableProducts(){
-			$sql = "SELECT a.ART_ID, a.ART_NOMBRE, c.CAT_NOMBRE, b.PRO_NOMBRE, a.ART_PRECIO, a.ART_STOCK 
-					FROM articulo a, proveedor b, categoria c
-					WHERE a.ID_CATEGORIA=c.CAT_ID 
-					AND a.ID_PROVEEDOR=b.PRO_ID
-					AND a.ART_STOCK>'0'
-					ORDER BY a.ART_ID ASC";
+			$sql = "SELECT a.prod_id, a.prod_nombre, c.cat_categoria, b.prov_proveedor, a.prod_precio, a.prod_existencia 
+					FROM productos a, proveedores b, categorias c
+					WHERE a.cat_id=c.cat_id 
+					AND a.prov_id=b.prov_id
+					AND a.prod_existencia>'0'
+					AND a.prod_estado=1
+					ORDER BY a.prod_id ASC";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -28,9 +29,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getProductById($id){
-			$sql = "SELECT a.ART_ID, a.ART_NOMBRE, c.CAT_ID,c.CAT_NOMBRE,b.PRO_ID, b.PRO_NOMBRE, a.ART_PRECIO, a.ART_STOCK 
-					FROM articulo a, proveedor b, categoria c 
-					WHERE a.ID_CATEGORIA=c.CAT_ID AND a.ID_PROVEEDOR=b.PRO_ID AND a.ART_ID='$id'";
+			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_id,c.cat_categoria,b.prov_id, b.prov_proveedor, a.prod_precio, a.prod_existencia 
+					FROM productos a, proveedores b, categorias c 
+					WHERE a.cat_id=c.cat_id AND a.prov_id=b.prov_id AND a.prod_id='$id'" AND a.prod_estado=1;
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -39,9 +40,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getProductPrice($id){
-			$sql = "SELECT a.ART_PRECIO 
-					FROM articulo a
-					WHERE a.ART_ID='$id'";
+			$sql = "SELECT a.prod_precio 
+					FROM productos a
+					WHERE a.prod_id='$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -50,9 +51,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getProductStock($id){
-			$sql = "SELECT a.ART_STOCK 
-					FROM articulo a
-					WHERE a.ART_ID='$id'";
+			$sql = "SELECT a.prod_existencia 
+					FROM productos a
+					WHERE a.prod_id='$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -61,9 +62,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function updateProduct($id,$name,$idCat,$idProv,$price,$stock){
-			$sql = "UPDATE articulo 
-					SET ART_NOMBRE='$name',ID_CATEGORIA='$idCat',ID_PROVEEDOR='$idProv',ART_PRECIO='$price',ART_STOCK='$stock'
-					WHERE ART_ID='$id'";
+			$sql = "UPDATE productos 
+					SET prod_nombre='$name',cat_id='$idCat',prov_id='$idProv',prod_precio='$price',prod_existencia='$stock'
+					WHERE prod_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -72,9 +73,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function updateProductStock($id,$stock){
-			$sql = "UPDATE articulo 
-					SET ART_STOCK='$stock'
-					WHERE ART_ID='$id'";
+			$sql = "UPDATE productos 
+					SET prod_existencia='$stock'
+					WHERE prod_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -83,13 +84,13 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteProduct($id){
-			$sql = "DELETE FROM articulo WHERE ART_ID = '$id'";
+			$sql = "UPDATE productos SET prod_estado=0 WHERE prod_id = '$id'";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function newProduct($name,$idCat,$idProv,$price,$stock){
-			$sql = "INSERT INTO articulo(ART_NOMBRE, ID_CATEGORIA, ID_PROVEEDOR, ART_PRECIO, ART_STOCK) 
-					VALUES ('$name','$idCat','$idProv','$price','$stock')";
+			$sql = "INSERT INTO productos(prod_nombre, cat_id, prov_id, prod_precio, prod_existencia, prod_estado) 
+					VALUES ('$name','$idCat','$idProv','$price','$stock', 1)";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

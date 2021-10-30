@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Provider extends DB{
 		public function getAllProviders(){
-			$sql = "SELECT * FROM proveedor";
+			$sql = "SELECT * FROM proveedores a WHERE a.prov_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -11,7 +11,7 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getProviderById($id){
-			$sql = "SELECT * FROM proveedor WHERE PRO_ID = '$id'";
+			$sql = "SELECT * FROM proveedores WHERE prov_id = '$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -20,9 +20,9 @@ include_once 'DataBase.php';
 			}
 		}
 
-		public function updateProvider($id,$name,$email,$phone,$city,$country){
-			$sql = "UPDATE proveedor SET PRO_NOMBRE='$name',PRO_CORREO='$email',PRO_TELEFONO='$phone',PRO_CIUDAD='$city',PRO_PAIS='$country'
-					WHERE PRO_ID='$id'";
+		public function updateProvider($id,$name,$email,$phone,$direction){
+			$sql = "UPDATE proveedores SET prov_proveedor='$name',prov_correo='$email',prov_contacto='$phone',prov_direccion='$direction',prov_estado=1
+					WHERE prov_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -31,13 +31,13 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteProvider($id){
-			$sql = "DELETE FROM proveedor WHERE PRO_ID = '$id'";
+			$sql = "UPDATE proveedores SET prov_estado=0 WHERE prov_id = '$id'";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
-		public function newProvider($name,$email,$phone,$city,$country){
-			$sql = "INSERT INTO proveedor(PRO_NOMBRE, PRO_CORREO, PRO_TELEFONO, PRO_CIUDAD, PRO_PAIS) 
-			VALUES ('$name','$email','$phone','$city','$country')";
+		public function newProvider($name,$email,$phone,$direction){
+			$sql = "INSERT INTO proveedores(prov_proveedor, prov_correo, prov_contacto, prov_direccion, prov_estado) 
+			VALUES ('$name','$email','$phone','$direction',1)";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

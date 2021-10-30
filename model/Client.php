@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Client extends DB{
 		public function getAllClients(){
-			$sql = "SELECT * FROM clientes";
+			$sql = "SELECT * FROM clientes a WHERE a.cl_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -39,13 +39,13 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteClient($id){
-			$sql = "DELETE FROM clientes WHERE cl_id = '$id'";
+			$sql = "UPDATE clientes SET cl_estado=0 WHERE cl_id = '$id'";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function newClient($name,$nit){
-			$sql = "INSERT INTO clientes(cl_cliente, cl_documento) 
-					VALUES ('$name','$nit')";
+			$sql = "INSERT INTO clientes(cl_cliente, cl_documento, cl_estado) 
+					VALUES ('$name','$nit', 1)";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

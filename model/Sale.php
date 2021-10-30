@@ -2,17 +2,17 @@
 include_once 'DataBase.php';
 	class Sale extends DB{
 		public function getAllSales($startDate,$endDate){
-			$sql = "SELECT v.VEN_ID, u.USR_NOMBRES, c.CLI_NOMBRE, c.CLI_NIT, a.ART_NOMBRE, dv.DV_CANTIDAD, v.VEN_TOTAL, v.VEN_FECHA
-					FROM venta v, detalleventa dv, usuario u, cliente c, articulo a
-					WHERE v.VEN_ID=dv.ID_VENTA 
-					AND v.ID_USUARIO=u.USR_ID 
-					AND v.ID_CLIENTE=c.CLI_ID 
-					AND dv.ID_ARTICULO=a.ART_ID
-					AND dv.ID_VENTA=v.VEN_ID
-					AND v.VEN_FECHA BETWEEN '$startDate' and '$endDate'
-					AND dv.ID_VENTA=v.VEN_ID					
-					GROUP BY v.VEN_ID
-					ORDER BY v.VEN_ID DESC";
+			$sql = "SELECT v.vent_id, u.usr_nombre_completo, c.cl_cliente, c.cl_documento, a.prod_nombre, dv.dv_cantidad, v.ven_total, v.ven_fecha
+					FROM ventas v, detalle_venta dv, usuarios u, clientes c, productos a
+					WHERE v.vent_id=dv.vent_id 
+					AND v.usr_id=u.usr_id 
+					AND v.cl_id=c.cl_id 
+					AND dv.prod_id=a.prod_id
+					AND dv.vent_id=v.vent_id
+					AND v.ven_fecha BETWEEN '$startDate' and '$endDate'
+					AND dv.vent_id=v.vent_id					
+					GROUP BY v.vent_id
+					ORDER BY v.vent_id DESC";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -21,16 +21,16 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getSalesDetails($startDate,$endDate){
-			$sql = "SELECT v.VEN_ID, dv.DV_ID, u.USR_NOMBRES, c.CLI_NOMBRE, c.CLI_NIT, a.ART_NOMBRE, dv.DV_CANTIDAD, dv.DV_SUBTOTAL, v.VEN_FECHA, v.VEN_TOTAL
-					FROM venta v, detalleventa dv, usuario u, cliente c, articulo a
-					WHERE v.VEN_ID=dv.ID_VENTA 
-					AND v.ID_USUARIO=u.USR_ID 
-					AND v.ID_CLIENTE=c.CLI_ID 
-					AND dv.ID_ARTICULO=a.ART_ID
-					AND dv.ID_VENTA=v.VEN_ID
-					AND v.VEN_FECHA BETWEEN '$startDate' and '$endDate'
-					AND dv.ID_VENTA=v.VEN_ID
-					ORDER BY v.VEN_ID ASC";
+			$sql = "SELECT v.vent_id, dv.dv_id, u.usr_nombre_completo, c.cl_cliente, c.cl_documento, a.prod_nombre, dv.dv_cantidad, dv.dv_subtotal, v.ven_fecha, v.ven_total
+					FROM ventas v, detalle_venta dv, usuarios u, clientes c, productos a
+					WHERE v.vent_id=dv.vent_id 
+					AND v.usr_id=u.usr_id 
+					AND v.cl_id=c.cl_id 
+					AND dv.prod_id=a.prod_id
+					AND dv.vent_id=v.vent_id
+					AND v.ven_fecha BETWEEN '$startDate' and '$endDate'
+					AND dv.vent_id=v.vent_id
+					ORDER BY v.vent_id ASC";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -39,13 +39,13 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getSaleById($id){
-			$sql = "SELECT v.VEN_ID, u.USR_NOMBRES,c.CLI_NIT, c.CLI_NOMBRE, a.ART_NOMBRE, dv.DV_CANTIDAD, v.VEN_TOTAL, v.VEN_FECHA 
-					FROM venta v, detalleventa dv, usuario u, cliente c, articulo a
-					WHERE v.VEN_ID=dv.ID_VENTA 
-					AND v.ID_USUARIO=u.USR_ID 
-					AND v.ID_CLIENTE=c.CLI_ID 
-					AND dv.ID_ARTICULO=a.ART_ID
-					AND v.VEN_ID='$id'";
+			$sql = "SELECT v.vent_id, u.usr_nombre_completo,c.cl_documento, c.cl_cliente, a.prod_nombre, dv.dv_cantidad, v.ven_total, v.ven_fecha 
+					FROM ventas v, detalle_venta dv, usuarios u, clientes c, productos a
+					WHERE v.vent_id=dv.vent_id 
+					AND v.usr_id=u.usr_id 
+					AND v.cl_id=c.cl_id 
+					AND dv.prod_id=a.prod_id
+					AND v.vent_id='$id'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -54,10 +54,10 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getSaleProducts($id){
-			$sql = "SELECT dv.DV_ID, a.ART_NOMBRE, a.ART_PRECIO, dv.DV_CANTIDAD, dv.DV_SUBTOTAL
-					FROM detalleventa dv, articulo a
-					WHERE dv.ID_ARTICULO=a.ART_ID
-					AND dv.ID_VENTA='$id'";
+			$sql = "SELECT dv.dv_id, a.prod_nombre, a.prod_precio, dv.dv_cantidad, dv.dv_subtotal
+					FROM detalle_venta dv, productos a
+					WHERE dv.prod_id=a.prod_id
+					AND dv.vent_id='$id'";
 			$result = $this->connect()->query($sql);
 			// if($result->num_rows>0){
 			// }else{
@@ -66,12 +66,12 @@ include_once 'DataBase.php';
 			return $result;
 		}
 		public function updateSale($date, $idSale, $idCli, $total, $idProd, $quantity){
-			$sql = "UPDATE venta 
-					SET VEN_FECHA='$date',ID_CATEGORIA='$idSale',ID_CLIENTE='$idCli',VEN_TOTAL='$total'
-					WHERE VEN_ID='$id';
-					UPDATE detalleventa 
-					SET ID_ARTICULO='$idProd',DV_CANTIDAD='$quantity',DV_SUBTOTAL='$total'
-					WHERE ID_VENTA='$id';";
+			$sql = "UPDATE ventas 
+					SET ven_fecha='$date',ID_CATEGORIA='$idSale',cl_id='$idCli',ven_total='$total'
+					WHERE vent_id='$id';
+					UPDATE detalle_venta 
+					SET prod_id='$idProd',dv_cantidad='$quantity',dv_subtotal='$total'
+					WHERE vent_id='$id';";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -80,18 +80,18 @@ include_once 'DataBase.php';
 			}
 		}
 		public function deleteSale($id){
-			$sql = "DELETE FROM venta WHERE VEN_ID = '$id';";
+			$sql = "UPDATE ventas SET ven_estado=0 WHERE vent_id = '$id';";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function deleteSaleDetail($id){
-			$sql = "DELETE FROM detalleventa WHERE ID_VENTA = '$id';";
+			$sql = "UPDATE detalle_venta SET dv_estado=0 WHERE vent_id = '$id';";
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
 		public function newSale($date,$idUser,$idClient,$total){
-			$sql = "INSERT INTO venta(VEN_FECHA, ID_USUARIO, ID_CLIENTE, VEN_TOTAL) 
-						VALUES ('$date','$idUser','$idClient','$total');";
+			$sql = "INSERT INTO ventas(ven_fecha, usr_id, cl_id, ven_total, ven_estado) 
+						VALUES ('$date','$idUser','$idClient','$total', 1);";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -100,8 +100,8 @@ include_once 'DataBase.php';
 			}
 		}
 		public function newSaleDetail($idProd,$quantity,$idSale,$total){			
-			$sql = "INSERT INTO detalleventa(ID_ARTICULO, DV_CANTIDAD, ID_VENTA, DV_SUBTOTAL) 
-						VALUES ('$idProd','$quantity','$idSale','$total');";			
+			$sql = "INSERT INTO detalle_venta(prod_id, dv_cantidad, vent_id, dv_subtotal, dv_estado) 
+						VALUES ('$idProd','$quantity','$idSale','$total', 1);";			
 			$result = $this->connect();			
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';
@@ -110,9 +110,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function getLastSale($usrId){			
-			$sql = "SELECT MAX(VEN_ID)
-					FROM venta
-					WHERE ID_USUARIO = '$usrId'";
+			$sql = "SELECT MAX(vent_id)
+					FROM ventas
+					WHERE usr_id = '$usrId'";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -121,9 +121,9 @@ include_once 'DataBase.php';
 			}
 		}
 		public function updateLastSaleTotal($id,$total){			
-			$sql = "UPDATE venta 
-					SET VEN_TOTAL='$total'
-					WHERE VEN_ID='$id';";
+			$sql = "UPDATE ventas 
+					SET ven_total='$total'
+					WHERE vent_id='$id';";
 			$result = $this->connect()->query($sql);
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

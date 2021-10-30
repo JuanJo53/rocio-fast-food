@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Category extends DB{
 		public function getAllCategories(){
-			$sql = "SELECT * FROM categorias";
+			$sql = "SELECT * FROM categorias a WHERE a.cat_estado=1";
 			$result = $this->connect()->query($sql);
 			$numrows = $result->num_rows;
 			if($result->num_rows>0){
