@@ -9,7 +9,7 @@
         if(!empty($clients)){
             while($row=$clients->fetch_array()){
                 $clientsHtml.="
-                    <option value='".$row['CLI_ID']."'>".$row['CLI_NIT']."</option>";
+                    <option value='".$row['cl_id']."'>".$row['cl_documento']."</option>";
             }
         }else{
             $clientsHtml.="<option style='color:red';>¡No hay nada que mostrar!</option>";
@@ -23,7 +23,7 @@
         if(!empty($products)){
             while($row=$products->fetch_array()){
                 $productsHtml.="
-                    <option value='".$row['ART_ID']."'>".$row['ART_NOMBRE']."</option>";
+                    <option value='".$row['prod_id']."'>".$row['prod_nombre']."</option>";
             }
         }else{
             $productsHtml.="<option style='color:red';>¡No hay nada que mostrar!</option>";

@@ -10,11 +10,11 @@
         while($row=$products->fetch_array()){
             $productsHtml.="
                 <tr>
-                    <th scope='row'>".$row['DV_ID']."</th>
-                    <td>".$row['ART_NOMBRE']."</td>
-                    <td>".$row['ART_PRECIO']."</td>
-                    <td>".$row['DV_CANTIDAD']."</td>
-                    <td>".$row['DV_SUBTOTAL']."</td>
+                    <th scope='row'>".$row['dv_id']."</th>
+                    <td>".$row['prod_nombre']."</td>
+                    <td>".$row['prod_precio']."</td>
+                    <td>".$row['dv_cantidad']."</td>
+                    <td>".$row['dv_subtotal']."</td>
                 </tr>";
         }
     }else{

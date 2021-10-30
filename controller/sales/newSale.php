@@ -16,7 +16,7 @@
     $clientResponse = $client->getClientByNit($clientNit);
     if(!empty($clientResponse)){
         while($row=$clientResponse->fetch_array()){
-            $clientId=$row['CLI_ID'];
+            $clientId=$row['cl_id'];
         }
     }
 
@@ -25,7 +25,7 @@
     $lastSaleIdResponse = $sale->getLastSale($userId);
     if(!empty($lastSaleIdResponse)){
         while($row=$lastSaleIdResponse->fetch_array()){
-            $lastSaleId=$row['MAX(VEN_ID)'];
+            $lastSaleId=$row['MAX(vent_id)'];
         }
     }
     print_r($lastSaleId);
@@ -34,7 +34,7 @@
         $productData = $product->getProductPrice($products[$i]->prodId);
         if(!empty($productData)){
             while($row=$productData->fetch_array()){
-                $price=$row['ART_PRECIO'];
+                $price=$row['prod_precio'];
             }
             $subtotal=$price*$products[$i]->quantity;
             $total+=$subtotal;
@@ -42,7 +42,7 @@
             $productStockResponse = $product->getProductStock($products[$i]->prodId);
             if(!empty($productStockResponse)){
                 while($row=$productStockResponse->fetch_array()){
-                    $prodStock=$row['ART_STOCK'];
+                    $prodStock=$row['prod_existencia'];
                 }
             }
             $newStock=$prodStock-($products[$i]->quantity);

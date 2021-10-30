@@ -8,18 +8,18 @@
         $lastSaleIdResponse = $sale->getLastSale($userId);
         if(!empty($lastSaleIdResponse)){
             while($row=$lastSaleIdResponse->fetch_array()){
-                $lastSaleId=$row['MAX(VEN_ID)'];
+                $lastSaleId=$row['MAX(vent_id)'];
             }
         }
         $sales = $sale->getSaleProducts($lastSaleId);
         $saleData = $sale->getSaleById($lastSaleId);
         if(!empty($saleData)){
             while($row=$saleData->fetch_array()){
-                $client=$row['CLI_NOMBRE'];
-                $clientNit=$row['CLI_NIT'];
-                $employee=$row['USR_NOMBRES'];
-                $saleTotal=$row['VEN_TOTAL'];
-                $saleDate=$row['VEN_FECHA'];
+                $client=$row['cl_cliente'];
+                $clientNit=$row['cl_documento'];
+                $employee=$row['usr_nombre_completo'];
+                $saleTotal=$row['ven_total'];
+                $saleDate=$row['ven_fecha'];
             }
         }
 
@@ -47,11 +47,11 @@
             while($row=$sales->fetch_array()){
                 $salesHtml.="
                 <tr>
-                    <th scope='row'>".$row['DV_ID']."</th>
-                    <td>".$row['ART_NOMBRE']."</td>
-                    <td>".$row['ART_PRECIO']."</td>
-                    <td>".$row['DV_CANTIDAD']."</td>
-                    <td>".$row['DV_SUBTOTAL']."</td>
+                    <th scope='row'>".$row['dv_id']."</th>
+                    <td>".$row['prod_nombre']."</td>
+                    <td>".$row['prod_precio']."</td>
+                    <td>".$row['dv_cantidad']."</td>
+                    <td>".$row['dv_subtotal']."</td>
                 </tr>";
             }
         }

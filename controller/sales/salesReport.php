@@ -43,12 +43,12 @@
             while($row=$sales->fetch_array()){
                 $salesHtml.="
                 <tr>
-                    <td>".$row['VEN_ID']."</td>
-                    <td>".$row['USR_NOMBRES']."</td>
-                    <td>".$row['CLI_NOMBRE']."</td>
-                    <td>".$row['CLI_NIT']."</td>
-                    <td>".$row['VEN_TOTAL']."</td>
-                    <td>".date("d/m/Y", strtotime($row['VEN_FECHA']))."</td>
+                    <td>".$row['vent_id']."</td>
+                    <td>".$row['usr_nombre_completo']."</td>
+                    <td>".$row['cl_cliente']."</td>
+                    <td>".$row['cl_documento']."</td>
+                    <td>".$row['ven_total']."</td>
+                    <td>".date("d/m/Y", strtotime($row['ven_fecha']))."</td>
                 </tr>";
             }
         }

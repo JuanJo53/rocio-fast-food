@@ -11,7 +11,7 @@
         $salesHtml='';
         if(!empty($clientResponse)){
             while($row=$clientResponse->fetch_array()){
-                $clientName=$row['CLI_NOMBRE'];
+                $clientName=$row['cl_cliente'];
             }
             $salesHtml.=$clientName;            
         }else{

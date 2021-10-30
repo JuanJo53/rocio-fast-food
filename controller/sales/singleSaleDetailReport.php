@@ -9,10 +9,10 @@
         $saleData = $sale->getSaleById($saleId);
         if(!empty($saleData)){
             while($row=$saleData->fetch_array()){
-                $client=$row['CLI_NOMBRE'];
-                $employee=$row['USR_NOMBRES'];
-                $saleTotal=$row['VEN_TOTAL'];
-                $saleDate=$row['VEN_FECHA'];
+                $client=$row['cl_cliente'];
+                $employee=$row['usr_nombre_completo'];
+                $saleTotal=$row['ven_total'];
+                $saleDate=$row['ven_fecha'];
             }
         }
         $salesHtml="
@@ -36,10 +36,10 @@
                 $salesHtml.="
                 <tr>
                     <th scope='row'>".$row['DV_ID']."</th>
-                    <td>".$row['ART_NOMBRE']."</td>
-                    <td>".$row['ART_PRECIO']."</td>
-                    <td>".$row['DV_CANTIDAD']."</td>
-                    <td>".$row['DV_SUBTOTAL']."</td>
+                    <td>".$row['prod_nombre']."</td>
+                    <td>".$row['prod_precio']."</td>
+                    <td>".$row['dv_cantidad']."</td>
+                    <td>".$row['dv_subtotal']."</td>
                 </tr>";
             }
         }
