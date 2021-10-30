@@ -18,10 +18,10 @@
             $(".idInput #prov_idEdit").val( id );
             $.getJSON('../controller/providers/getProviderDetails.php',{'prov_id':id} ,function( data ) {
                 console.log(data);
-                $(".nameInput #prov_nameEdit").val( data.PRO_NOMBRE );
-                $(".emailInput #prov_emailEdit").val( data.PRO_CORREO );
-                $(".phoneInput #prov_phoneEdit").val( data.PRO_TELEFONO );
-                $(".directionInput #prov_directEdit").val( data.PRO_CIUDAD );
+                $(".nameInput #prov_nameEdit").val( data.prov_proveedor );
+                $(".emailInput #prov_emailEdit").val( data.prov_correo );
+                $(".phoneInput #prov_phoneEdit").val( data.prov_contacto );
+                $(".directionInput #prov_directEdit").val( data.prov_direccion );
             });
         });
     </script>

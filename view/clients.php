@@ -18,10 +18,8 @@
             $(".idInput #cli_idE").val( id );
             $.getJSON('../controller/clients/getClientDetails.php',{'cli_id':id} ,function( data ) {
                 console.log(data);
-                $(".nameInput #client_nameE").val( data.CLI_NOMBRE );
-                $(".nitInput #client_nitE").val( data.CLI_NIT );
-                $(".phoneInput #client_phoneE").val( data.CLI_TELEFONO );
-                $(".emailInput #client_emailE").val( data.CLI_CORREO);
+                $(".nameInput #client_nameE").val( data.cl_cliente );
+                $(".nitInput #client_nitE").val( data.cl_documento );
             });
         });
     </script>

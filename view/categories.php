@@ -18,7 +18,7 @@
             $(".idInput #cat_idEdit").val( id );
             $.getJSON('../controller/categories/getCategoryDetails.php',{'cat_id':id} ,function( data ) {
                 console.log(data);
-                $(".nameInput #cat_nameEdit").val( data.CAT_NOMBRE );
+                $(".nameInput #cat_nameEdit").val( data.cat_categoria );
             });
         });
     </script>

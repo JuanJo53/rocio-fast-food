@@ -7,7 +7,9 @@
             return $result;
 		}	
 		public function getAllUsers(){
-			$sql = "SELECT * FROM usuarios a WHERE a.usr_estado=1";
+			$sql = "SELECT a.usr_id, a.usr_nombre_completo, a.usr_direccion, a.usr_correo, a.usr_contacto, a.usr_usuario, a.usr_password, b.rol_id, b.rol_nombre
+					FROM usuarios a, roles b 
+					WHERE a.rol_id=b.rol_id AND a.usr_estado=1 AND b.rol_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -16,7 +18,9 @@
 			}
 		}
 		public function getUserById($id){
-			$sql = "SELECT * FROM usuarios WHERE usr_id = '$id'";
+			$sql = "SELECT a.usr_id, a.usr_nombre_completo, a.usr_direccion, a.usr_correo, a.usr_contacto, a.usr_usuario, a.usr_password, b.rol_id, b.rol_nombre
+					FROM usuarios a, roles b 
+					WHERE a.usr_id = '$id' AND a.rol_id=b.rol_id ";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;

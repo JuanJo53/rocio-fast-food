@@ -18,11 +18,12 @@
             $(".idInput #prod_idE").val( id );
             $.getJSON('../controller/products/getProductDetails.php',{'prod_id':id} ,function( data ) {
                 console.log(data);
-                $(".nameInput #prod_nameE").val( data.ART_NOMBRE );
-                $(".catInput #prod_idCatE").val( data.CAT_ID );
-                $(".provInput #prod_idProvE").val( data.PRO_ID );
-                $(".priceInput #prod_priceE").val( data.ART_PRECIO);
-                $(".stockInput #prod_stockE").val( data.ART_STOCK);
+                $(".nameInput #prod_nameE").val( data.prod_nombre );
+                $(".descInput #prod_descE").val( data.prod_nombre );
+                $(".catInput #prod_idCatE").val( data.cat_id );
+                $(".provInput #prod_idProvE").val( data.prov_id );
+                $(".priceInput #prod_priceE").val( data.prod_precio);
+                $(".stockInput #prod_stockE").val( data.prod_existencia);
             });
         });
     </script>
@@ -206,7 +207,7 @@
                             <label for="prod_nameE" class="col-form-label">Nombre del Producto:</label>
                             <input type="text" class="form-control" id="prod_nameE" name="prod_nameE" placeholder="Nuevo Producto" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 descInput">
                             <label for="prod_descE" class="col-form-label">Descipcion:</label>
                             <input type="text" class="form-control" id="prod_descE" name="prod_descE" placeholder="Este es un nuevo Producto" required>
                         </div>

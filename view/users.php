@@ -18,13 +18,13 @@
             $(".idInput #usr_idE").val( id );
             $.getJSON('../controller/users/getUserDetails.php',{'usr_idEdit':id} ,function( data ) {
                 console.log(data);
-                $(".nameInput #usr_namee").val( data.USR_NOMBRES );
-                $(".phoneInput #usr_phonee").val( data.USR_TELEFONO );
-                $(".emailInput #usr_emaile").val( data.USR_CORREO );
-                $(".directionInput #usr_directe").val( data.USR_APELLIDOS );
-                $(".usernameInput #usr_usernamee").val( data.USR_USER );
-                $(".typeInput #usr_typee").val( data.USR_TIPO );
-                $(".passInput #usr_passworde").val( data.USR_PASSWORD );
+                $(".nameInput #usr_namee").val( data.usr_nombre_completo );
+                $(".phoneInput #usr_phonee").val( data.usr_contacto );
+                $(".emailInput #usr_emaile").val( data.usr_correo );
+                $(".directionInput #usr_directe").val( data.usr_direccion );
+                $(".usernameInput #usr_usernamee").val( data.usr_usuario );
+                $(".typeInput #usr_typee").val( data.rol_id );
+                $(".passInput #usr_passworde").val( data.usr_password );
             });
         });
     </script>
@@ -172,8 +172,8 @@
                         <label for="usr_type" class="col-form-label">Tipo:</label>
                         <select class="form-select" aria-label="Category select" id="usr_type" name="usr_type" required> 
                             <option value="" selected disabled>Ninguna</option>
-                            <option value="admin">Administrador</option>
-                            <option value="empleado">Empleado</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
                         </select>
                     </div>
                 </div>
@@ -229,8 +229,8 @@
                         <label for="usr_typee" class="col-form-label">Tipo:</label>
                         <select class="form-select" aria-label="Category select" id="usr_typee" name="usr_typee" required> 
                             <option value="" selected disabled>Ninguna</option>
-                            <option value="admin">Administrador</option>
-                            <option value="empleado">Empleado</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
                         </select>
                     </div>
                 </div>
