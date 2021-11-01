@@ -1,15 +1,8 @@
 <?php
 	include_once 'DataBase.php';
-	class User extends DB{
-		public function login($user,$pass){
-			$sql = 'SELECT * FROM usuarios WHERE usr_usuario="'.$user.'"';
-			$result = $this->connect()->query($sql);
-            return $result;
-		}	
-		public function getAllUsers(){
-			$sql = "SELECT a.usr_id, a.usr_nombre_completo, a.usr_direccion, a.usr_correo, a.usr_contacto, a.usr_usuario, a.usr_password, b.rol_id, b.rol_nombre
-					FROM usuarios a, roles b 
-					WHERE a.rol_id=b.rol_id AND a.usr_estado=1 AND b.rol_estado=1";
+	class Role extends DB{
+		public function getAllRoles(){
+			$sql = "SELECT * FROM roles	WHERE rol_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -46,7 +39,7 @@
 		}
 		public function newUser($name,$direct,$phone,$email,$username,$password,$type){
 			$sql = "INSERT INTO usuarios(usr_nombre_completo, usr_direccion, usr_correo, usr_contacto, usr_usuario, usr_password, usr_estado, rol_id) 
-			VALUES ('$name','$direct','$email','$phone','$username','$password', 1,'$type')";
+			VALUES ('$name','$direct','$email','$phone','$username','$password', 1,'$rolId')";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

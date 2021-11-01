@@ -172,8 +172,9 @@
                         <label for="usr_type" class="col-form-label">Tipo:</label>
                         <select class="form-select" aria-label="Category select" id="usr_type" name="usr_type" required> 
                             <option value="" selected disabled>Ninguna</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Empleado</option>
+                            <?php
+                                    echo showRoles();
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -229,14 +230,15 @@
                         <label for="usr_typee" class="col-form-label">Tipo:</label>
                         <select class="form-select" aria-label="Category select" id="usr_typee" name="usr_typee" required> 
                             <option value="" selected disabled>Ninguna</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Empleado</option>
+                            <?php
+                                    echo showRoles();
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                 </div>
             </form>
             </div>

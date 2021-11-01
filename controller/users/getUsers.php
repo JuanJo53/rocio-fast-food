@@ -1,5 +1,7 @@
 <?php
     include '../model/User.php';
+    include '../model/Role.php';
+
     function showUsers(){
         $user = new User;
         $users = $user->getAllUsers();
@@ -10,9 +12,9 @@
                 <tr>
                     <th scope='row'>".$row['usr_id']."</th>
                     <td>".$row['usr_nombre_completo']."</td>
-                    <td>".$row['usr_direccion']."</td>
                     <td>".$row['usr_contacto']."</td>
                     <td>".$row['usr_correo']."</td>
+                    <td>".$row['usr_direccion']."</td>
                     <td>".$row['usr_usuario']."</td>
                     <td>".$row['rol_nombre']."</td>
                     <td>
@@ -36,6 +38,21 @@
             $usersHtml.="<tr><th style='color:red';>¡No hay nada que mostrar!</th></tr>";
         }
         return $usersHtml;
+    }
+
+    function showRoles(){
+        $role = new Role;
+        $roles = $role->getAllRoles();
+        $rolesHtml='';        
+        if(!empty($roles)){
+            while($row=$roles->fetch_array()){
+                $rolesHtml.="
+                    <option value='".$row['rol_id']."'>".$row['rol_nombre']."</option>";
+            }
+        }else{
+            $rolesHtml.="<option style='color:red';>¡No hay nada que mostrar!</option>";
+        }
+        return $rolesHtml;
     }
 
 ?>
