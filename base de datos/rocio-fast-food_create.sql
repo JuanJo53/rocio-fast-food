@@ -1,14 +1,13 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2021-10-29 03:26:00.691
+-- Last modification date: 2021-11-01 18:41:41.636
+CREATE DATABASE rocio_fast_food;
+
+use rocio_fast_food;
 
 -- tables
 -- Table: categorias
-CREATE DATABASE rocio_fast_food;
-
-USE rocio_fast_food;
-
 CREATE TABLE categorias (
-    cat_id bigint NOT NULL,
+    cat_id bigint NOT NULL AUTO_INCREMENT,
     cat_categoria varchar(50) NOT NULL,
     cat_estado int NOT NULL COMMENT '0: DELETED
 1: ACTIVE',
@@ -17,7 +16,7 @@ CREATE TABLE categorias (
 
 -- Table: clientes
 CREATE TABLE clientes (
-    cl_id bigint NOT NULL,
+    cl_id bigint NOT NULL AUTO_INCREMENT,
     cl_cliente varchar(40) NOT NULL,
     cl_documento varchar(10) NOT NULL,
     cl_estado int NOT NULL COMMENT '0: DELETED
@@ -27,7 +26,7 @@ CREATE TABLE clientes (
 
 -- Table: detalle_venta
 CREATE TABLE detalle_venta (
-    dv_id bigint NOT NULL,
+    dv_id bigint NOT NULL AUTO_INCREMENT,
     dv_cantidad int NOT NULL,
     dv_subtotal double(12,2) NOT NULL,
     dv_estado int NOT NULL COMMENT '0: DELETED
@@ -39,7 +38,7 @@ CREATE TABLE detalle_venta (
 
 -- Table: productos
 CREATE TABLE productos (
-    prod_id bigint NOT NULL,
+    prod_id bigint NOT NULL AUTO_INCREMENT,
     prod_nombre varchar(255) NOT NULL,
     prod_descripcion varchar(255) NOT NULL,
     prod_precio numeric(6,2) NOT NULL,
@@ -54,7 +53,7 @@ CREATE TABLE productos (
 
 -- Table: proveedores
 CREATE TABLE proveedores (
-    prov_id bigint NOT NULL,
+    prov_id bigint NOT NULL AUTO_INCREMENT,
     prov_proveedor varchar(50) NOT NULL,
     prov_direccion varchar(70) NOT NULL,
     prov_correo varchar(50) NOT NULL,
@@ -66,7 +65,7 @@ CREATE TABLE proveedores (
 
 -- Table: roles
 CREATE TABLE roles (
-    rol_id bigint NOT NULL,
+    rol_id bigint NOT NULL AUTO_INCREMENT,
     rol_nombre varchar(40) NOT NULL,
     rol_estado int NOT NULL COMMENT '0: DELETED
 1: ACTIVE',
@@ -75,7 +74,7 @@ CREATE TABLE roles (
 
 -- Table: usuarios
 CREATE TABLE usuarios (
-    usr_id bigint NOT NULL,
+    usr_id bigint NOT NULL AUTO_INCREMENT,
     usr_nombre_completo varchar(50) NOT NULL,
     usr_direccion varchar(50) NOT NULL,
     usr_correo varchar(50) NOT NULL,
@@ -90,7 +89,7 @@ CREATE TABLE usuarios (
 
 -- Table: ventas
 CREATE TABLE ventas (
-    vent_id bigint NOT NULL,
+    vent_id bigint NOT NULL AUTO_INCREMENT,
     ven_fecha date NOT NULL,
     ven_total double(12,2) NOT NULL,
     ven_estado int NOT NULL COMMENT '0: DELETED
