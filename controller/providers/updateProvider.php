@@ -6,11 +6,11 @@
         $name=$_POST['prov_nameEdit'];
         $email=$_POST['prov_emailEdit'];
         $phone=$_POST['prov_phoneEdit'];
-        $city=$_POST['prov_cityEdit'];
-        $country=$_POST['prov_countryEdit'];
+        $direction=$_POST['prov_directEdit'];
     
         $provider = new Provider;
-        $response = $provider->updateProvider($provid,$name,$email,$phone,$city,$country);        return $response;
+        $response = $provider->updateProvider($provid,$name,$email,$phone,$direction);       
+        return $response;
     }
     echo updateProviderData();
     

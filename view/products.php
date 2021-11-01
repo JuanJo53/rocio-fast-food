@@ -19,7 +19,7 @@
             $.getJSON('../controller/products/getProductDetails.php',{'prod_id':id} ,function( data ) {
                 console.log(data);
                 $(".nameInput #prod_nameE").val( data.prod_nombre );
-                $(".descInput #prod_descE").val( data.prod_nombre );
+                $(".descInput #prod_descE").val( data.prod_descripcion );
                 $(".catInput #prod_idCatE").val( data.cat_id );
                 $(".provInput #prod_idProvE").val( data.prov_id );
                 $(".priceInput #prod_priceE").val( data.prod_precio);

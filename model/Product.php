@@ -31,7 +31,7 @@ include_once 'DataBase.php';
 		public function getProductById($id){
 			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_id,c.cat_categoria,b.prov_id, b.prov_proveedor, a.prod_precio, a.prod_existencia 
 					FROM productos a, proveedores b, categorias c 
-					WHERE a.cat_id=c.cat_id AND a.prov_id=b.prov_id AND a.prod_id='$id'" AND a.prod_estado=1;
+					WHERE a.cat_id=c.cat_id AND a.prov_id=b.prov_id AND a.prod_id='$id' AND a.prod_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;
@@ -61,9 +61,9 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
-		public function updateProduct($id,$name,$idCat,$idProv,$price,$stock){
+		public function updateProduct($id,$name,$desc,$idCat,$idProv,$price,$stock){
 			$sql = "UPDATE productos 
-					SET prod_nombre='$name',cat_id='$idCat',prov_id='$idProv',prod_precio='$price',prod_existencia='$stock'
+					SET prod_nombre='$name',prod_descripcion='$desc',cat_id='$idCat',prov_id='$idProv',prod_precio='$price',prod_existencia='$stock'
 					WHERE prod_id='$id'";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
@@ -88,9 +88,9 @@ include_once 'DataBase.php';
 			$result = $this->connect()->query($sql);
 			return $result;
 		}
-		public function newProduct($name,$idCat,$idProv,$price,$stock){
-			$sql = "INSERT INTO productos(prod_nombre, cat_id, prov_id, prod_precio, prod_existencia, prod_estado) 
-					VALUES ('$name','$idCat','$idProv','$price','$stock', 1)";
+		public function newProduct($name,$desc,$idCat,$idProv,$price,$stock){
+			$sql = "INSERT INTO productos(prod_nombre, prod_descripcion, cat_id, prov_id, prod_precio, prod_existencia, prod_estado) 
+					VALUES ('$name','$desc','$idCat','$idProv','$price','$stock', 1)";
 			$result = $this->connect();
 			if(mysqli_query($result, $sql)){
 				return 'Exito!';

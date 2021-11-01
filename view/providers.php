@@ -194,12 +194,12 @@
                     </div>
                     <div class="mb-3 directionInput">
                         <label for="prov_directE" class="col-form-label">Direccion:</label>
-                        <input type="text" class="form-control" id="prov_directEdit" name="prov_directE" placeholder="Ciudad Maravilla c/London Nro. 140" required>
+                        <input type="text" class="form-control" id="prov_directEdit" name="prov_directEdit" placeholder="Ciudad Maravilla c/London Nro. 140" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                 </div>
             </form>
             </div>
