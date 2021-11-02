@@ -13,6 +13,11 @@
     $total=0;
 
     $client = new Client;
+    
+    if (isset($_POST['saleCliName'])) {
+        $clientName=$_POST['saleCliName'];        
+        $result = $client->newClient($clientName,$clientNit);
+    }
     $clientResponse = $client->getClientByNit($clientNit);
     if(!empty($clientResponse)){
         while($row=$clientResponse->fetch_array()){

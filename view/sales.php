@@ -201,8 +201,12 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label for="saleCliId" class="col-form-label">NIT Cliente:</label>
+                                    <label for="client_nit_search" class="col-form-label">NIT Cliente:</label>
                                     <input type="number" min="1" class="form-control" id="client_nit_search" name="client_nit_search" placeholder="0000000" required>
+                                    <label for="cli_name" class="col-form-label">Nombre Cliente:</label>
+                                    <div class="clientSearchResponse" id="clientSearchResponse" name="clientSearchResponse">                                        
+                                    </div>
+                                    <!-- <input type="text" class="form-control" id="cli_name" name="cli_name" placeholder="Apellido Generico" disabled required> -->
                                 </div>
                                 <div class="col-md-1">
                                     <label for="startDate" class="col-form-label">Buscar</label>
@@ -213,17 +217,17 @@
                                     </button>                              
                                 </div>
                             </div>
-                            <div class="row clientSearchResponse" id="clientSearchResponse" name="clientSearchResponse"></div>
-                            <button type='button' class='btn btn-outline-success openNewClientModal' id='openNewClientModal' name='openNewClientModal'>Registrar Cliente</button>
+                            <!-- <div class="row clientSearchResponse" id="clientSearchResponse" name="clientSearchResponse"></div>
+                            <button type='button' class='btn btn-outline-success openNewClientModal' id='openNewClientModal' name='openNewClientModal'>Registrar Cliente</button> -->
                         </div>
                         <div class="mb-3 row">
                             <div class="col">
-                                <label for="saleProdIdE" class="col-form-label">Articulos:</label>
+                                <label for="saleProdIdE" class="col-form-label">Productos a Comprar:</label>
                             </div>
                             <hr>
                             <div class="row ps-5 pe-5">
                                 <div class="productsList" id="productsList">                                    
-                                    <label for="saleProdIdE1" class="col-form-label">Articulo:</label>
+                                    <label for="saleProdIdE1" class="col-form-label">Productos:</label>
                                     <select class="form-select" aria-label="Products select" id="saleProdIdE1" name="saleProdIdE1" required>
                                         <option value="" selected disabled>Ninguna</option>
                                         <?php                                        
@@ -414,6 +418,7 @@
                     prodsList.push(newProd);
                 }
                 clientId=$('#client_nit_search').val();
+                clientName=$('#cli_name').val();
                 
                 var forms = document.querySelectorAll('.needs-validation');
 
@@ -430,14 +435,24 @@
                 });
 
                 if($("#newSaleForm").valid()){
-                    $.ajax({                
-                        url:"../controller/sales/newSale.php", 
-                        type: "POST",
-                        data: { saleCliId: clientId, prodsList: JSON.stringify(prodsList)},
-                    });
+                    if($("#cli_name").attr('disabled') || $("#cli_name").prop('disabled')){
+                        $.ajax({                
+                            url:"../controller/sales/newSale.php", 
+                            type: "POST",
+                            data: { saleCliId: clientId, prodsList: JSON.stringify(prodsList)},
+                        });
+                        $(".newSaleModal").modal('hide');
+                        $(".downloadSaleInvoiceModal").modal('show');
+                    }else{
+                        $.ajax({                
+                            url:"../controller/sales/newSale.php", 
+                            type: "POST",
+                            data: { saleCliId: clientId, saleCliName: clientName,prodsList: JSON.stringify(prodsList)},
+                        });
+                        $(".newSaleModal").modal('hide');
+                        $(".downloadSaleInvoiceModal").modal('show');
+                    }
                     
-                    $(".newSaleModal").modal('hide');
-                    $(".downloadSaleInvoiceModal").modal('show');
                 }else{
                     console.log('Formulario no valido!');
                 }
@@ -490,11 +505,11 @@
                             console.log(response);
                             if(response!=''){
                                 $( "#clientSearchResponse" ).html('');
-                                $( "#clientSearchResponse" ).append("<tr><th style='color:green';>¡Cliente "+response+" esta registrado!</th></tr>");
+                                $( "#clientSearchResponse" ).append("<input type='text' class='form-control cli_name' id='cli_name' name='cli_name' placeholder='Apellido Generico' value='"+response+"' disabled required>");
                                 $("#openNewClientModal").hide();
                             }else{
                                 $( "#clientSearchResponse" ).html('');
-                                $( "#clientSearchResponse" ).append("<tr><th style='color:red';>¡Cliente NO Registrado!</th></tr>");
+                                $( "#clientSearchResponse" ).append("<input type='text' class='form-control cli_name' id='cli_name' name='cli_name' placeholder='Apellido Generico' required>");
                                 $("#openNewClientModal").show();
                             }
                         }
