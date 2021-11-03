@@ -35,7 +35,7 @@
             while($row=$sales->fetch_array()){
                 $salesHtml.="
                 <tr>
-                    <th scope='row'>".$row['DV_ID']."</th>
+                    <th scope='row'>".$row['dv_id']."</th>
                     <td>".$row['prod_nombre']."</td>
                     <td>".$row['prod_precio']."</td>
                     <td>".$row['dv_cantidad']."</td>

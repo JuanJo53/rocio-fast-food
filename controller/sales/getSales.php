@@ -53,7 +53,7 @@
                             </svg>
                         </button>
                     </td>";
-                if($_SESSION['TIPO']=='admin'){
+                if($_SESSION['TIPO']==1){
                     $salesHtml.="                    
                         <td>
                             <button class='btn btn-danger openDeleteModal' data-bs-toggle='modal' data-bs-target='#delSaleModal' role='button' id='saleIdDel' name='saleIdDel' data-id='".$row['vent_id']."'>

@@ -10,7 +10,8 @@ include_once 'DataBase.php';
 					AND dv.prod_id=a.prod_id
 					AND dv.vent_id=v.vent_id
 					AND v.ven_fecha BETWEEN '$startDate' and '$endDate'
-					AND dv.vent_id=v.vent_id					
+					AND dv.vent_id=v.vent_id
+					AND v.ven_estado=1
 					GROUP BY v.vent_id
 					ORDER BY v.vent_id DESC";
 			$result = $this->connect()->query($sql);
