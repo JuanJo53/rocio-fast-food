@@ -3,58 +3,84 @@
     include '../../model/Product.php';
     include '../../model/Client.php';
 
-    session_start(); 
-    $userId=$_SESSION['CODIGO'];
-    $clientNit=$_POST['saleCliId'];
-    $prodsData=$_POST['prodsList'];
-    $products=json_decode($prodsData);    
-    // $date=date('Y-m-d');
-    $date=date('Y-m-d', strtotime('-1 day'));
-    $total=0;
-
-    $client = new Client;
-    
-    if (isset($_POST['saleCliName'])) {
-        $clientName=$_POST['saleCliName'];        
-        $result = $client->newClient($clientName,$clientNit);
-    }
-    $clientResponse = $client->getClientByNit($clientNit);
-    if(!empty($clientResponse)){
-        while($row=$clientResponse->fetch_array()){
-            $clientId=$row['cl_id'];
+    function addSale(){
+        session_start(); 
+        $userId=$_SESSION['CODIGO'];
+        $clientNit=$_POST['saleCliId'];
+        $prodsData=$_POST['prodsList'];
+        $products=json_decode($prodsData);    
+        // $date=date('Y-m-d');
+        $date=date('Y-m-d', strtotime('-1 day'));
+        $total=0;
+        $stockVerif=false;
+        $procesStatus=false;
+        $newStocks=[];
+        
+        //Adding new client if needed.
+        $client = new Client;        
+        if (isset($_POST['saleCliName'])) {
+            $clientName=$_POST['saleCliName'];        
+            $result = $client->newClient($clientName,$clientNit);
         }
-    }
-
-    $sale = new Sale;
-    $newSaleResult = $sale->newSale($date,$userId,$clientId,$total);
-    $lastSaleIdResponse = $sale->getLastSale($userId);
-    if(!empty($lastSaleIdResponse)){
-        while($row=$lastSaleIdResponse->fetch_array()){
-            $lastSaleId=$row['MAX(vent_id)'];
-        }
-    }
-    print_r($lastSaleId);
-    for($i=0;$i<sizeof($products);$i++) {
-        $product = new Product;
-        $productData = $product->getProductPrice($products[$i]->prodId);
-        if(!empty($productData)){
-            while($row=$productData->fetch_array()){
-                $price=$row['prod_precio'];
+        $clientResponse = $client->getClientByNit($clientNit);        
+        if(!empty($clientResponse)){
+            while($row=$clientResponse->fetch_array()){
+                $clientId=$row['cl_id'];
             }
-            $subtotal=$price*$products[$i]->quantity;
-            $total+=$subtotal;
-            $newSaleDetailResult = $sale->newSaleDetail($products[$i]->prodId,$products[$i]->quantity,$lastSaleId,$subtotal);
-            $productStockResponse = $product->getProductStock($products[$i]->prodId);
-            if(!empty($productStockResponse)){
-                while($row=$productStockResponse->fetch_array()){
-                    $prodStock=$row['prod_existencia'];
+        }
+
+        //Adding sale procedure starts here
+        $sale = new Sale;        
+        $product = new Product;
+
+        //Verify stock availability of products
+        for($i=0;$i<sizeof($products);$i++){
+            $stocksVerifResponse = $product->getProductStock($products[$i]->prodId);
+            if(!empty($stocksVerifResponse)){
+                while($row=$stocksVerifResponse->fetch_array()){
+                    $currentProdStock=$row['prod_existencia'];
                 }
             }
-            $newStock=$prodStock-($products[$i]->quantity);
-            $updateStockResponse = $product->updateProductStock($products[$i]->prodId,$newStock);
+            $stockDiference = $currentProdStock-($products[$i]->quantity>0);
+            if($stockDiference<0){
+                $stockVerif=false;
+                break;
+            }else{
+                $stockVerif=true;
+            }
+            array_push($newStocks,$stockDiference);
         }
-    }
-    $newSaleTotalUpdateResponse = $sale->updateLastSaleTotal($lastSaleId,$total);
+        if($stockVerif==true){
+            $newSaleResult = $sale->newSale($date,$userId,$clientId,$total);
+            $lastSaleIdResponse = $sale->getLastSale($userId);
+            if(!empty($lastSaleIdResponse)){
+                while($row=$lastSaleIdResponse->fetch_array()){
+                    $lastSaleId=$row['MAX(vent_id)'];
+                }
+            }
+        
+            for($i=0;$i<sizeof($products);$i++) {
+                $productData = $product->getProductPrice($products[$i]->prodId);
+                if(!empty($productData)){
+                    while($row=$productData->fetch_array()){
+                        $price=$row['prod_precio'];
+                    }
+                    $subtotal=$price*$products[$i]->quantity;
+                    $total+=$subtotal;
     
+                    $newSaleDetailResult = $sale->newSaleDetail($products[$i]->prodId,$products[$i]->quantity,$lastSaleId,$subtotal);    
+                    $newStock=$newStocks[$i];
+                    $updateStockResponse = $product->updateProductStock($products[$i]->prodId,$newStock);
+                }
+            }
+            $newSaleTotalUpdateResponse = $sale->updateLastSaleTotal($lastSaleId,$total);
+            $procesStatus=true;
+        }else{
+            $procesStatus=false;
+        }
+        return $procesStatus;
+    }
+
+    echo addSale();
     // header('Location: ../../controller/sales/saleInvoice.php');
 ?>
