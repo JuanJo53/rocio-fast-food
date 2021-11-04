@@ -13,8 +13,8 @@
         $date=date('Y-m-d', strtotime('-1 day'));
         $total=0;
         $stockVerif=false;
-        $procesStatus=false;
-        $newStocks=[];
+        $procesStatus='false';
+        $newStocks=array();
         
         //Adding new client if needed.
         $client = new Client;        
@@ -41,7 +41,7 @@
                     $currentProdStock=$row['prod_existencia'];
                 }
             }
-            $stockDiference = $currentProdStock-($products[$i]->quantity>0);
+            $stockDiference = $currentProdStock-($products[$i]->quantity);
             if($stockDiference<0){
                 $stockVerif=false;
                 break;
@@ -74,9 +74,9 @@
                 }
             }
             $newSaleTotalUpdateResponse = $sale->updateLastSaleTotal($lastSaleId,$total);
-            $procesStatus=true;
+            $procesStatus='true';
         }else{
-            $procesStatus=false;
+            $procesStatus='false';
         }
         return $procesStatus;
     }

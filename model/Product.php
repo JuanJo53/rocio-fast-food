@@ -28,6 +28,22 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
+		public function getAllLowStockProducts(){
+			$sql = "SELECT a.prod_id, a.prod_nombre, c.cat_categoria, b.prov_proveedor, a.prod_precio, a.prod_existencia 
+					FROM productos a, proveedores b, categorias c
+					WHERE a.cat_id=c.cat_id 
+					AND a.prov_id=b.prov_id
+					AND a.prod_existencia>'0'
+					AND a.prod_existencia<'11'
+					AND a.prod_estado=1
+					ORDER BY a.prod_id ASC";
+			$result = $this->connect()->query($sql);
+			if($result->num_rows>0){
+				return $result;
+			}else{
+				return false;
+			}
+		}
 		public function getProductById($id){
 			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_id,c.cat_categoria,b.prov_id, b.prov_proveedor, a.prod_precio, a.prod_existencia 
 					FROM productos a, proveedores b, categorias c 

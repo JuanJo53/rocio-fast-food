@@ -408,11 +408,24 @@
                             type: "POST",
                             data: { saleCliId: clientId, prodsList: JSON.stringify(prodsList)},               
                             success: function(response){
-                                if(response==false){
+                                if(response=='false'){
                                     alert('Uno de los productos excede el limite de stock!');
-                                }else{                                    
+                                }else{
                                     $(".newSaleModal").modal('hide');
                                     $(".downloadSaleInvoiceModal").modal('show');
+                                    setTimeout(
+                                        function(){
+                                            $.ajax({                
+                                                url:"../controller/products/checkStock.php", 
+                                                type: "GET",
+                                                success: function(response){                                
+                                                    if(response!='false'){
+                                                        alert(response);
+                                                    }
+                                                }
+                                            });
+                                        }, 3000
+                                    );
                                 }
                             }
                         });
@@ -421,12 +434,26 @@
                             url:"../controller/sales/newSale.php", 
                             type: "POST",
                             data: { saleCliId: clientId, saleCliName: clientName,prodsList: JSON.stringify(prodsList)},
-                            success: function(response){
-                                if(response==false){
+                            success: function(response){                                
+                                if(response=='false'){
                                     alert('Uno de los productos excede el limite de stock!');
-                                }else{                                    
+                                }else{
                                     $(".newSaleModal").modal('hide');
                                     $(".downloadSaleInvoiceModal").modal('show');
+                                    setTimeout(
+                                        function(){
+                                            $.ajax({                
+                                                url:"../controller/products/checkStock.php", 
+                                                type: "GET",
+                                                success: function(response){                                
+                                                    console.log(response);
+                                                    if(response!='false'){
+                                                        alert(response);
+                                                    }
+                                                }
+                                            });
+                                        }, 3000
+                                    );
                                 }
                             }
                         });
@@ -518,7 +545,7 @@
                 setTimeout(
                     function(){
                         location.reload();
-                    }, 1000
+                    }, 4000
                 );
             });
         });
