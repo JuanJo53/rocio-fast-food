@@ -36,60 +36,11 @@
 
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="56">
-	<!--Header-->
-	<nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<div class="container">
-            <?php
-                session_start();    
-                echo "<h4 style='color:white;margin-right:10px;'>¡Hola ". $_SESSION['USUARIO']."!</h4>";
-            ?>
-			<a class="navbar-brand" href="#">Rocio Fast Food</a>
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbar"
-				aria-controls="navbarSupportedContent"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbar">
-				<ul class="navbar-nav ml-auto ms-5">
-					<li class="nav-item">
-						<a class="nav-link" href="home.php">Inicio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="products.php">Productos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="clients.php">Clientes</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="sales.php">Ventas</a>
-					</li>
-                    <?php
-                        if($_SESSION['TIPO']==1){
-                            echo "<li class='nav-item'>
-                                    <a class='nav-link' href='providers.php'>Proveedores</a>
-                                </li>";
-                            echo "<li class='nav-item'>
-                                    <a class='nav-link' href='categories.php'>Categorias</a>
-                                </li>";
-                            echo "<li class='nav-item'>
-                                    <a class='nav-link' href='users.php'>Usuarios</a>
-                                </li>";
-                        }
-                    ?>
-				</ul>
-                <form method="post" action="../controller/logout.php">
-                    <button class="btn btn-outline-danger text-md- ms-5" type="submit">Cerrar Sesion</button>
-                </form>
-			</div>
-		</div>
-	</nav>
-	<!--header-->
+		<!--Header-->
+        <?php
+        include '../view/header.php';
+        ?>	
+    <!--header-->
     <div class="container">
 		<div class="row">
 			<div class="col text-center text-uppercase">

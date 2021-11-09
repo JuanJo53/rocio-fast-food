@@ -19,14 +19,17 @@ body {
 	padding: 15px;
 }
 .title {
-	color: #0d6efd;
+	color: orangered;
+}
+.card-title {
+	color: orange;
 }
 .home-title {
 	margin-top: 50px;
-	color: #0d6efd;
+	color: orange;
 }
 .subtitle {
-	color: dodgerblue;
+	color: orange;
 }
 .login-error {
 	color: red;
@@ -34,6 +37,9 @@ body {
 .message_error {
 	color: red;
 	text-align: center;
+}
+.login-box-msg {
+	color: orange;
 }
 .products {
 	margin: 50px;
