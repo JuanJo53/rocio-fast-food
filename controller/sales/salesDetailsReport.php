@@ -54,8 +54,8 @@
                     <td>".$row['cl_documento']."</td>
                     <td>".$row['prod_nombre']."</td>
                     <td>".$row['dv_cantidad']."</td>
-                    <td>".$row['dv_subtotal']."</td>
-                    <td>".$row['ven_total']."</td>
+                    <td>".$row['dv_subtotal']." bs</td>
+                    <td>".$row['ven_total']." bs</td>
                     <td>".date("d/m/Y", strtotime($row['ven_fecha']))."</td>
                 </tr>";
             }

@@ -10,6 +10,7 @@
 				return false;
 			}
 		}
+		
 		public function getUserById($id){
 			$sql = "SELECT a.usr_id, a.usr_nombre_completo, a.usr_direccion, a.usr_correo, a.usr_contacto, a.usr_usuario, a.usr_password, b.rol_id, b.rol_nombre
 					FROM usuarios a, roles b 

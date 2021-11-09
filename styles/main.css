@@ -21,11 +21,12 @@ body {
 .title {
 	color: orangered;
 }
-.card-title {
-	color: orange;
-}
 .home-title {
 	margin-top: 50px;
+	color: orange;
+}
+.card-title{
+	
 	color: orange;
 }
 .subtitle {
@@ -38,8 +39,8 @@ body {
 	color: red;
 	text-align: center;
 }
-.login-box-msg {
-	color: orange;
+.login-box-msg{
+	color:orange;
 }
 .products {
 	margin: 50px;

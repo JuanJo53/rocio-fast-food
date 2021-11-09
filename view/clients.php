@@ -33,8 +33,8 @@
 <body data-spy="scroll" data-target="#navbar" data-offset="56">
 	<!--Header-->
     <?php
-    include '../view/header.php';
-    ?>	
+        include '../view/header.php';
+        ?>	
     <!--header-->
     <div class="container">
 		<div class="row">
@@ -45,17 +45,10 @@
                 </div>
 			</div>
 		</div>
-        <div class="row m-3">
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newClientModal" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                </svg>
-                Nuevo Cliente
-            </button>
-        </div>
-        <div class="row g-4">
+        
+        <div class="card body m-3">
             <div class="col">
-                <table class="table table-hover">
+                <table class="table table-light table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

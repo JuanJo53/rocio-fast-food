@@ -43,7 +43,7 @@
                     <td>".$row['usr_nombre_completo']."</td>
                     <td>".$row['cl_cliente']."</td>
                     <td>".$row['cl_documento']."</td>
-                    <td>".$row['ven_total']."</td>
+                    <td>".$row['ven_total']." bs</td>
                     <td>".date("d/m/Y", strtotime($row['ven_fecha']))."</td>
                     <td>
                         <button class='btn btn-info openDetailModal' data-bs-toggle='modal' data-bs-target='#prodDetailModal' role='button'  id='saleIdDetails' name='saleIdDetails' data-id='".$row['vent_id']."'>

@@ -15,9 +15,9 @@
         <div class="col-12 col-md-6 offset-md-3 login-box">  
             <!-- /.login-logo -->
             <div class="card login-card text-dark bg-light mb-3">
-              <div class="login-logo">
-                <h1 class="title fs-1">Rocio Fast Food</h1> 
-                <h2 class="subtitle">Restaurante</h2>
+            <div class="login-logo">
+                  <img src="assets/img/logoR.jpg"   alt="Logo"> 
+
               </div>
               <div class="card-body login-card-body">
                 <p class="login-box-msg">Iniciar Sesion</p>

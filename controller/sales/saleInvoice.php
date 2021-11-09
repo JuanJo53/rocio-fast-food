@@ -26,11 +26,19 @@
         $salesHtml="
         <center><h1>Rocio Fast Food</h1></center>
         <center><p><b>Direccion: </b>av. Republica Nro. 390, Zona villa victoria</p></center>
-        <center><p><b>NIT: </b>3355428017</p></center>
-        <center><p><b>Nro. de FACTURA: </b>".$lastSaleId."</p></center>
-        <center><p><b>Cliente: </b>".$client."<b>&nbsp;&nbsp;&nbsp;&nbsp; NIT/CI: </b>".$clientNit."</p></center>
-        <center><p><b>Empleado: </b>".$employee."</p></center>
-        <center><p><b>Total: </b>".$saleTotal." Bs.<b>&nbsp;&nbsp;&nbsp;&nbsp; Fecha: </b>".date("d/m/Y", strtotime($saleDate))."</p></center>
+        <center><p><b>Cel: </b>  69860296</p></center>
+        <center><p> La Paz - Bolivia</p></center>
+        <center><b>FACTURA </b></center>
+        <b>----------------------------------------------------------------------------------</b>
+        <p><b>NIT: </b>3355428017</p>
+        <p><b>Nro. de FACTURA: </b>".$lastSaleId."</p>
+        <b>----------------------------------------------------------------------------------</b>
+        <p><b> Fecha: </b>".date("d/m/Y", strtotime($saleDate))."</p>
+       
+        <b> NIT/CI: </b>".$clientNit."</center>
+        <p><b>Cliente: </b>".$client."
+        <p><b>Empleado: </b>".$employee."</p>
+        <b>---------------------------------------------------------------------------------</b>
         <center><h2>Detalle de Productos</h2></center>
         <center><table>
             <thead>
@@ -49,9 +57,9 @@
                 <tr>
                     <th scope='row'>".$row['dv_id']."</th>
                     <td>".$row['prod_nombre']."</td>
-                    <td>".$row['prod_precio']."</td>
+                    <td>".$row['prod_precio']." bs</td>
                     <td>".$row['dv_cantidad']."</td>
-                    <td>".$row['dv_subtotal']."</td>
+                    <td>".$row['dv_subtotal']." bs</td>
                 </tr>";
             }
         }

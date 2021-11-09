@@ -43,8 +43,8 @@
 
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="56">
-		<!--Header-->
-        <?php
+	<!--Header-->
+    <?php
         include '../view/header.php';
         ?>	
     <!--header-->
@@ -57,7 +57,7 @@
                 </div>
 			</div>
 		</div>
-        <div class="row m-3">
+        <div  class="m-3"style="text-align: right;">
             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newSaleModal" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
@@ -71,6 +71,7 @@
                     <label for="startDate" class="col-form-label">Desde:</label>
                     <input class="form-control" type="text" id="startDate" name='startDate'>
                 </div>
+              
                 <div class="col-md-2">
                     <label for="endDate" class="col-form-label">Hasta:</label>
                     <input class="form-control" type="text" id="endDate" name='endDate'>            
@@ -113,9 +114,9 @@
                 </div>
             </div>
         </div>
-        <div class="row g-4">
+        <div class="m-3 card body">
             <div class="col" id="saleTableData">
-                <table class="table table-hover">
+                <table class="table table-light table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -308,6 +309,7 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <script language="javascript">        
@@ -360,7 +362,8 @@
                             data: { saleCliId: clientId, prodsList: JSON.stringify(prodsList)},               
                             success: function(response){
                                 if(response=='false'){
-                                    alert('Uno de los productos excede el limite de stock!');
+                                    
+                                    swal('Uno de los productos excede el limite de stock!');
                                 }else{
                                     $(".newSaleModal").modal('hide');
                                     $(".downloadSaleInvoiceModal").modal('show');
@@ -375,7 +378,7 @@
                                                     }
                                                 }
                                             });
-                                        }, 3000
+                                        }, 4000
                                     );
                                 }
                             }
@@ -403,7 +406,7 @@
                                                     }
                                                 }
                                             });
-                                        }, 3000
+                                        }, 4000
                                     );
                                 }
                             }
@@ -423,6 +426,7 @@
     </script>
     <script>        
 		$(document).ready(function () {
+            
             $('#startDate').datepicker('setDate', new Date('2021-1-1'));
             $('#endDate').datepicker('setDate', new Date());
             var startDate=$('#startDate').val();
