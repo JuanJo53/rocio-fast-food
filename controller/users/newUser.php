@@ -9,8 +9,10 @@
     $password=$_POST['usr_password'];
     $type=$_POST['usr_type'];
 
+    $encryptedPass = md5($password);
+
     $user = new User;
-    $result = $user->newUser($name,$direct,$phone,$email,$username,$password,$type);
+    $result = $user->newUser($name,$direct,$phone,$email,$username,$encryptedPass,$type);
     echo $result;
     header('Location: ../../view/users.php');
 

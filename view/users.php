@@ -42,7 +42,7 @@
 	<!--Header-->
     <?php
         include '../view/header.php';
-        ?>	
+    ?>	
     <!--header-->
     <div class="container">
 		<div class="row">
@@ -127,7 +127,7 @@
                         <select class="form-select" aria-label="Category select" id="usr_type" name="usr_type" required> 
                             <option value="" selected disabled>Ninguna</option>
                             <?php
-                                    echo showRoles();
+                                echo showRoles();
                             ?>
                         </select>
                     </div>
@@ -185,7 +185,7 @@
                         <select class="form-select" aria-label="Category select" id="usr_typee" name="usr_typee" required> 
                             <option value="" selected disabled>Ninguna</option>
                             <?php
-                                    echo showRoles();
+                                echo showRoles();
                             ?>
                         </select>
                     </div>

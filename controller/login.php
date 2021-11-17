@@ -5,13 +5,15 @@
     $username=$_POST['USER'];
     $password=$_POST['PASSWORD'];
 
+    $encryptedPass = md5($password);
+
     $user = new User;
-    $result = $user->login($username,$password);
+    $result = $user->login($username,$encryptedPass);
 
     if ($result) { 
         if ($result->num_rows > 0) { 
             while ($row = $result->fetch_array()) { 
-                if($password==$row['usr_password']){
+                if($encryptedPass==$row['usr_password']){
                     $cod_usuario=$row['usr_id'];                          
                     $_SESSION['CODIGO']=$cod_usuario;
                     $_SESSION['USUARIO']=$username;
@@ -19,7 +21,7 @@
                     $_SESSION['TIPO']=$row['rol_id'];
                     $_SESSION['LOGIN_STATUS']='exito';
                     header('Location: ../index.php');
-                }else{                    
+                }else{
                     $_SESSION['LOGIN_STATUS']= "Usuario o contraseña incorrecta";
                     header('Location: ../index.php');
                 } 

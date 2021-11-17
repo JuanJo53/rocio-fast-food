@@ -32,7 +32,7 @@
                     session_start();
                     if(isset($_SESSION['LOGIN_STATUS'])){
                       if($_SESSION['LOGIN_STATUS']=='exito'){
-                        header('Location: view/home.php');               
+                        header('Location: view/home.php');
                       }else{
                         echo "<p class='login-error'>".$_SESSION['LOGIN_STATUS']."</p>";
                       }
