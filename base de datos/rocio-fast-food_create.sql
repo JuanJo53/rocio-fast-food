@@ -1,8 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2021-11-01 18:41:41.636
-CREATE DATABASE rocio_fast_food;
-
-use rocio_fast_food;
+-- Last modification date: 2021-11-17 20:42:54.378
 
 -- tables
 -- Table: categorias
@@ -43,7 +40,7 @@ CREATE TABLE productos (
     prod_descripcion varchar(255) NOT NULL,
     prod_precio numeric(6,2) NOT NULL,
     prod_existencia int NOT NULL,
-    prod_imagen varchar(255) NOT NULL,
+    prod_imagen longblob NOT NULL,
     prod_estado int NOT NULL COMMENT '0: DELETED
 1: ACTIVE',
     cat_id bigint NOT NULL,
@@ -80,7 +77,7 @@ CREATE TABLE usuarios (
     usr_correo varchar(50) NOT NULL,
     usr_contacto varchar(20) NOT NULL,
     usr_usuario varchar(20) NOT NULL,
-    usr_password varchar(20) NOT NULL,
+    usr_password varchar(40) NOT NULL,
     usr_estado int NOT NULL COMMENT '0: DELETED
 1: ACTIVE',
     rol_id bigint NOT NULL,
