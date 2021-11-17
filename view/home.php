@@ -1,4 +1,9 @@
-
+<?php
+    session_start();    
+    if(!isset($_SESSION['LOGIN_STATUS'])){
+        header("Location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +19,7 @@
 	<!--Header-->
     <?php
         include '../view/header.php';
-        ?>	
+    ?>
     <!--header-->
     <div class="container">
 		<div class="row">

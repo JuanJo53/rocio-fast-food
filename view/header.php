@@ -4,7 +4,6 @@
     	<img src="../assets/img/logoR.jpg" width="150" height="50"   alt="Logo"> 
 	
         <?php
-            session_start();    
             echo "<h4 style='color:orange;'>¡Bienvenido ". $_SESSION['USUARIO']."!</h4>";
         ?>
 		

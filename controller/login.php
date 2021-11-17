@@ -32,8 +32,7 @@
             header('Location: ../index.php');
         } 
     }else{ 
-        $_SESSION['LOGIN_STATUS'] = "ERROR: No se pudo ejecutar $sql. ".$conn->error; 
+        $_SESSION['LOGIN_STATUS'] = "ERROR: No se pudo ejecutar la peticion";
         header('Location: ../index.php');
     }
-    $conn->close();
 ?>
