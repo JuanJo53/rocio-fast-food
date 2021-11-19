@@ -91,7 +91,7 @@
         </div>
 	</div>
     
-    <!-- New Article Modal -->
+    <!-- New Product Modal -->
     <div class="modal fade" id="newArticleModal" tabindex="-1" aria-labelledby="newArticleModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -144,9 +144,9 @@
             </div>
         </div>
     </div>    
-    <!-- New Article Modal -->
+    <!-- New Product Modal -->
 
-    <!-- Edit Article Modal -->
+    <!-- Edit Product Modal -->
     <div class="modal fade" id="editArticleModal" tabindex="-1" aria-labelledby="editArticleModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -203,9 +203,9 @@
             </div>
         </div>
     </div>    
-    <!-- Edit Article Modal -->
+    <!-- Edit Product Modal -->
 
-    <!-- Delete Article Modal -->
+    <!-- Delete Product Modal -->
     <div class="modal fade" id="delArticleModal" tabindex="-1" aria-labelledby="delArticleModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -230,7 +230,7 @@
             </div>
         </div>
     </div>
-    <!-- Delete Article Modal -->
+    <!-- Delete Product Modal -->
     
 </body>
 </html>

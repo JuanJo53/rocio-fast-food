@@ -5,7 +5,7 @@
     $username=$_POST['USER'];
     $password=$_POST['PASSWORD'];
 
-    $encryptedPass = md5($password);
+    $encryptedPass = hash('sha256', $password);
 
     $user = new User;
     $result = $user->login($username,$encryptedPass);

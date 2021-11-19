@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2021-11-17 20:42:54.378
+-- Last modification date: 2021-11-19 00:56:31.249
 
 -- tables
 -- Table: categorias
@@ -77,7 +77,7 @@ CREATE TABLE usuarios (
     usr_correo varchar(50) NOT NULL,
     usr_contacto varchar(20) NOT NULL,
     usr_usuario varchar(20) NOT NULL,
-    usr_password varchar(40) NOT NULL,
+    usr_password varchar(70) NOT NULL,
     usr_estado int NOT NULL COMMENT '0: DELETED
 1: ACTIVE',
     rol_id bigint NOT NULL,

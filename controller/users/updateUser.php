@@ -11,7 +11,7 @@
         $password=$_POST['usr_passworde'];
         $type=$_POST['usr_typee'];  
 
-        $encryptedPass = md5($password);
+        $encryptedPass = hash('sha256', $password);
     
         $user = new User;
         $response = $user->updateUser($userId,$name,$direction,$phone,$email,$username,$encryptedPass,$type);

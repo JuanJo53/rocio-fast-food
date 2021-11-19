@@ -9,7 +9,7 @@
     $password=$_POST['usr_password'];
     $type=$_POST['usr_type'];
 
-    $encryptedPass = md5($password);
+    $encryptedPass = hash('sha256', $password);
 
     $user = new User;
     $result = $user->newUser($name,$direct,$phone,$email,$username,$encryptedPass,$type);
