@@ -29,8 +29,21 @@
 				<li class="nav-item">
 					<a class="nav-link" href="clients.php">Clientes</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="sales.php">Ventas</a>
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						id="navbarDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						Ventas
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="sales.php">Registros y Reportes</a>
+						<a class="dropdown-item" href="charts.php">Graficos y Analisis</a>
+					</div>
 				</li>
                 <?php
                     if($_SESSION['TIPO']=='1'){
