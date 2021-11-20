@@ -24,8 +24,10 @@
             $(".idInput #prod_idE").val( id );
             $.getJSON('../controller/products/getProductDetails.php',{'prod_id':id} ,function( data ) {
                 console.log(data);
+                var image="data:image/jpg;charset=utf8;base64,"+data.prod_imagen;
                 $(".nameInput #prod_nameE").val( data.prod_nombre );
                 $(".descInput #prod_descE").val( data.prod_descripcion );
+                $("#prod_imageE").attr('src',image);
                 $(".catInput #prod_idCatE").val( data.cat_id );
                 $(".provInput #prod_idProvE").val( data.prov_id );
                 $(".priceInput #prod_priceE").val( data.prod_precio);
@@ -99,8 +101,12 @@
                     <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method='post' action='../controller/products/newProduct.php'>
+                <form method='post' action='../controller/products/newProduct.php' enctype="multipart/form-data">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <label>Seleciona una imagen para subir:</label><br>
+                            <input type="file" name="image">
+                        </div>
                         <div class="mb-3">
                             <label for="prod_name" class="col-form-label">Nombre del Producto:</label>
                             <input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="Nuevo Producto" required>
@@ -154,11 +160,18 @@
                     <h5 class="modal-title" id="exampleModalLabel">Detalles del Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method='post' action="../controller/products/updateProduct.php">
-                    <div class="modal-body">                        
+                <form method='post' action="../controller/products/updateProduct.php" enctype="multipart/form-data">
+                    <div class="modal-body">
                         <div class="mb-3 idInput">        
                             <label for="prod_idE" class="col-form-label">ID:</label>
                             <input type="text" class="form-control" id="prod_idE" name="prod_idE" readonly>
+                        </div>
+                        <div class="mb-3 imageInput">        
+                            <label for="prod_imageE" class="col-form-label">Imagen:</label><br>
+                            <img class="prod_imageE img-thumbnail" width="300" height="300" id="prod_imageE" name="prod_imageE">
+                            </img>
+                            <label>Seleciona una imagen para subir:</label><br>
+                            <input type='file' name='imageE'>
                         </div>
                         <div class="mb-3 nameInput">
                             <label for="prod_nameE" class="col-form-label">Nombre del Producto:</label>
