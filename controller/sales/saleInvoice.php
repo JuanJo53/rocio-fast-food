@@ -31,10 +31,10 @@
         <center><b>FACTURA </b></center>
         <b>----------------------------------------------------------------------------------</b>
         <p><b>NIT: </b>3355428017</p>
-        <p><b>Nro. de FACTURA: </b>".$lastSaleId."</p>
+        <p><b>CODIGO de FACTURA: </b>".$lastSaleId."</p>
         <b>----------------------------------------------------------------------------------</b>
         <p><b> Fecha: </b>".date("d/m/Y", strtotime($saleDate))."</p>
-       
+
         <b> NIT/CI: </b>".$clientNit."</center>
         <p><b>Cliente: </b>".$client."
         <p><b>Empleado: </b>".$employee."</p>
@@ -43,7 +43,7 @@
         <center><table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>CODIGO DETALLE DE VENTA</th>
                     <th>ARTICULO</th>
                     <th>PRECIO</th>
                     <th>CANTIDAD</th>

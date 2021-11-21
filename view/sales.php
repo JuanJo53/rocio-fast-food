@@ -52,7 +52,7 @@
 	<!--Header-->
     <?php
         include '../view/header.php';
-        ?>	
+    ?>	
     <!--header-->
     <div class="container">
 		<div class="row">

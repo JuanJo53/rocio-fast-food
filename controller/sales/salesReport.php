@@ -30,7 +30,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>CODIGO DE VENTA</th>
                     <th>EMPLEADO</th>
                     <th>CLIENTE</th>
                     <th>NIT CLIENTE</th>

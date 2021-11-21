@@ -44,9 +44,12 @@
                     <label for="startDate" class="col-form-label">Buscar</label>
                     <button class="btn btn-primary" type='button' role="button" id='searchByDate' name='searchByDate'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </button>
+                </div>
+                <div class="avgSalesSec col-md-3">
+
                 </div>
             </div>
         </div>
@@ -76,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <canvas id="productsChart" width="400" height="200"></canvas>
+            <canvas class="m-5" id="productsChart" width="400" height="200"></canvas>
         </div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
@@ -109,10 +112,16 @@
                     var salesData = JSON.parse(response);
                     var salesLabels = [];
                     var salesCount = [];
+                    var sum=0;
                     for(var i=0;i<salesData.length;i++){
+                        sum+=salesData[i][1];
                         salesLabels.push(salesData[i][0]);
                         salesCount.push(salesData[i][1]);
                     }
+                    var avg=sum/salesData.length;
+                    avg=avg.toFixed(2);
+                    $( ".avgSalesSec" ).append("<label for='avgSales' class='col-form-label'>Ventas Promedio</label><h2 class=''>"+avg+"</h2>");
+
                     const salesChartElem= document.getElementById('salesChart').getContext('2d');
                     salesChart = new Chart(salesChartElem, {
                         type: 'line',
