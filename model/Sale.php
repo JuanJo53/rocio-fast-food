@@ -54,6 +54,19 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
+		public function getSalesCount($startDate,$endDate){
+			$sql = "SELECT v.ven_fecha, COUNT(v.ven_fecha)
+					FROM ventas v
+					WHERE v.ven_estado=1					
+					AND v.ven_fecha BETWEEN '$startDate' and '$endDate'
+					GROUP BY v.ven_fecha";
+			$result = $this->connect()->query($sql);
+			if($result->num_rows>0){
+				return $result;
+			}else{
+				return false;
+			}
+		}
 		public function getSaleProducts($id){
 			$sql = "SELECT dv.dv_id, a.prod_nombre, a.prod_precio, dv.dv_cantidad, dv.dv_subtotal
 					FROM detalle_venta dv, productos a

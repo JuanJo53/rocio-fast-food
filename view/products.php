@@ -72,6 +72,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">IMAGEN</th>
                             <th scope="col">NOMBRE</th>
                             <th scope="col">DESCRIPCION</th>
                             <th scope="col">CATEGORIA</th>

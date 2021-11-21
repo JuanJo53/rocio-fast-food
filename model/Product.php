@@ -2,7 +2,7 @@
 include_once 'DataBase.php';
 	class Product extends DB{
 		public function getAllProducts(){
-			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_categoria, b.prov_proveedor, a.prod_precio, a.prod_existencia
+			$sql = "SELECT a.prod_id, a.prod_descripcion, a.prod_nombre, c.cat_categoria, b.prov_proveedor, a.prod_precio, a.prod_existencia, a.prod_imagen
 					FROM productos a, proveedores b, categorias c
 					WHERE a.cat_id=c.cat_id AND a.prov_id=b.prov_id AND a.prod_estado=1
 					ORDER BY a.prod_id ASC";
@@ -37,6 +37,17 @@ include_once 'DataBase.php';
 					AND a.prod_existencia<'11'
 					AND a.prod_estado=1
 					ORDER BY a.prod_id ASC";
+			$result = $this->connect()->query($sql);
+			if($result->num_rows>0){
+				return $result;
+			}else{
+				return false;
+			}
+		}
+		public function getAllProductStocks(){
+			$sql = "SELECT a.prod_id, a.prod_nombre, a.prod_existencia 
+					FROM productos a
+					WHERE a.prod_estado=1";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
 				return $result;

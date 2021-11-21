@@ -11,6 +11,7 @@
                 $productsHtml.="
                 <tr>
                     <th scope='row'>".$row['prod_id']."</th>
+                    <th scope='row'><img src='data:image/jpg;charset=utf8;base64,".base64_encode($row['prod_imagen'])."' class='img-thumbnail' width='100' height='100'></img></th>
                     <td>".$row['prod_nombre']."</td>
                     <td>".$row['prod_descripcion']."</td>
                     <td>".$row['cat_categoria']."</td>
