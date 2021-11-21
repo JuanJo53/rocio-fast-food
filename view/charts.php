@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 <div class="avgSalesSec col-md-3">
-
+                    <label for='avgSales' class='col-form-label'>Ventas Promedio</label>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                     }
                     var avg=sum/salesData.length;
                     avg=avg.toFixed(2);
-                    $( ".avgSalesSec" ).append("<label for='avgSales' class='col-form-label'>Ventas Promedio</label><h2 class=''>"+avg+"</h2>");
+                    $( ".avgSalesSec" ).append("<h2 class='avgData'>"+avg+"</h2>");
 
                     const salesChartElem= document.getElementById('salesChart').getContext('2d');
                     salesChart = new Chart(salesChartElem, {
@@ -154,18 +154,24 @@
                         console.log(JSON.parse(response));
                         var salesData = JSON.parse(response);
                         var salesLabels = [];
-                        var saleCount = [];
+                        var salesCount = [];
+                        var sum=0;
                         for(var i=0;i<salesData.length;i++){
+                            sum+=salesData[i][1];
                             salesLabels.push(salesData[i][0]);
-                            saleCount.push(salesData[i][1]);
+                            salesCount.push(salesData[i][1]);
                         }
+                        var avg=sum/salesData.length;
+                        avg=avg.toFixed(2);
+                        $( ".avgData" ).remove();
+                        $( ".avgSalesSec" ).append("<h2 class='avgData'>"+avg+"</h2>");
                         salesChart = new Chart(salesChartElem, {
                             type: 'line',
                             data: {
                                 labels: salesLabels,
                                 datasets: [{
                                     label: 'Ventas Totales',
-                                    data: saleCount,
+                                    data: salesCount,
                                     fill: false,
                                     borderColor: 'rgb(75, 192, 192)',
                                     tension: 0.1
