@@ -67,6 +67,25 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
+		public function getSalesSumByProduct(){
+			$sql = "SELECT p.prod_id, p.prod_nombre, SUM(dv.dv_cantidad), 
+						ROUND(( SUM(dv.dv_cantidad) / ( 
+							SELECT SUM( dv.dv_cantidad )
+							FROM detalle_venta dv, productos p
+							WHERE dv.dv_estado=1
+							AND dv.prod_id=p.prod_id ) * 100 ), 2)
+					FROM ventas v, productos p, detalle_venta dv
+					WHERE dv.dv_estado=1
+					AND dv.prod_id=p.prod_id
+					AND v.vent_id=dv.vent_id
+					GROUP BY p.prod_nombre";
+			$result = $this->connect()->query($sql);
+			if($result->num_rows>0){
+				return $result;
+			}else{
+				return false;
+			}
+		}
 		public function getSaleProducts($id){
 			$sql = "SELECT dv.dv_id, a.prod_nombre, a.prod_precio, dv.dv_cantidad, dv.dv_subtotal
 					FROM detalle_venta dv, productos a
