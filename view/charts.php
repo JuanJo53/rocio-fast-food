@@ -102,6 +102,7 @@
             var endDate=$('#endDate').val();
 
             let salesChart;
+            let salesProdsChart;
             $.ajax({
                 url:  '../controller/sales/getSalesCount.php',
                 type: "POST",
@@ -138,55 +139,13 @@
                 }
             );
 
-            $('#searchByDate').click(function(){
-                var startDate=$('#startDate').val();
-                var endDate=$('#endDate').val();
-                
-                const salesChartElem= document.getElementById('salesChart').getContext('2d');
-                salesChart.destroy();
-                $.ajax({
-                    url:  '../controller/sales/getSalesCount.php',
-                    type: "POST",
-                    data: {startDate: startDate, endDate: endDate },
-                }).done(
-                    function(response){
-                        var salesData = JSON.parse(response);
-                        var salesLabels = [];
-                        var salesCount = [];
-                        var sum=0;
-                        for(var i=0;i<salesData.length;i++){
-                            sum+=parseInt(salesData[i][1]);
-                            salesLabels.push(salesData[i][0]);
-                            salesCount.push(salesData[i][1]);
-                        }
-                        var avg=sum/salesData.length;
-                        avg=avg.toFixed(2);
-                        $( ".avgData" ).remove();
-                        $( ".avgSalesSec" ).append("<h2 class='avgData'>"+avg+"</h2>");
-                        salesChart = new Chart(salesChartElem, {
-                            type: 'line',
-                            data: {
-                                labels: salesLabels,
-                                datasets: [{
-                                    label: 'Ventas Totales',
-                                    data: salesCount,
-                                    fill: false,
-                                    borderColor: 'rgb(75, 192, 192)',
-                                    tension: 0.1
-                                }]
-                            },
-                        });
-                    }
-                );
-            });
-
             //Sales By Product Sum
             $.ajax({
                 url:  '../controller/sales/getSalesSumByProduct.php',
-                type: "GET",
+                type: "POST",
+                data: {startDate: startDate, endDate: endDate },
             }).done(
                 function(response){
-                    console.log(JSON.parse(response));
                     var salesProdsData = JSON.parse(response);
                     var salesProductsLabels = [];
                     var salesProductsSums = [];
@@ -195,7 +154,7 @@
                         salesProductsSums.push(salesProdsData[i][3]);
                     }
                     const saleProdsChartElem= document.getElementById('salesProdChart').getContext('2d');
-                    const salesProdsChart = new Chart(saleProdsChartElem, {
+                    salesProdsChart = new Chart(saleProdsChartElem, {
                         type: 'pie',
                         data: {
                             labels: salesProductsLabels,
@@ -283,6 +242,102 @@
                     });
                 }
             );
+
+            $('#searchByDate').click(function(){
+                var startDate=$('#startDate').val();
+                var endDate=$('#endDate').val();
+                
+                const salesChartElem= document.getElementById('salesChart').getContext('2d');
+                salesChart.destroy();
+                $.ajax({
+                    url:  '../controller/sales/getSalesCount.php',
+                    type: "POST",
+                    data: {startDate: startDate, endDate: endDate },
+                }).done(
+                    function(response){
+                        var salesData = JSON.parse(response);
+                        var salesLabels = [];
+                        var salesCount = [];
+                        var sum=0;
+                        for(var i=0;i<salesData.length;i++){
+                            sum+=parseInt(salesData[i][1]);
+                            salesLabels.push(salesData[i][0]);
+                            salesCount.push(salesData[i][1]);
+                        }
+                        var avg=sum/salesData.length;
+                        avg=avg.toFixed(2);
+                        $( ".avgData" ).remove();
+                        $( ".avgSalesSec" ).append("<h2 class='avgData'>"+avg+"</h2>");
+                        salesChart = new Chart(salesChartElem, {
+                            type: 'line',
+                            data: {
+                                labels: salesLabels,
+                                datasets: [{
+                                    label: 'Ventas Totales',
+                                    data: salesCount,
+                                    fill: false,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    tension: 0.1
+                                }]
+                            },
+                        });
+                    }
+                );
+
+                const saleProdsChartElem= document.getElementById('salesProdChart').getContext('2d');
+                salesProdsChart.destroy();
+                $.ajax({
+                    url:  '../controller/sales/getSalesSumByProduct.php',
+                    type: "POST",
+                    data: {startDate: startDate, endDate: endDate },
+                }).done(
+                    function(response){
+                        var salesProdsData = JSON.parse(response);
+                        var salesProductsLabels = [];
+                        var salesProductsSums = [];
+                        for(var i=0;i<salesProdsData.length;i++){
+                            salesProductsLabels.push(salesProdsData[i][1]+" (%)");
+                            salesProductsSums.push(salesProdsData[i][3]);
+                        }
+
+                        salesProdsChart = new Chart(saleProdsChartElem, {
+                            type: 'pie',
+                            data: {
+                                labels: salesProductsLabels,
+                                datasets: [{
+                                    label: 'Ventas por Producto',
+                                    data: salesProductsSums,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                }
+                            },
+                        });
+                    }
+                );
+            });
         });
     </script>
 </body>

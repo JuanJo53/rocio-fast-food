@@ -67,17 +67,18 @@ include_once 'DataBase.php';
 				return false;
 			}
 		}
-		public function getSalesSumByProduct(){
+		public function getSalesSumByProduct($startDate,$endDate){
 			$sql = "SELECT p.prod_id, p.prod_nombre, SUM(dv.dv_cantidad), 
 						ROUND(( SUM(dv.dv_cantidad) / ( 
 							SELECT SUM( dv.dv_cantidad )
 							FROM detalle_venta dv, productos p
-							WHERE dv.dv_estado=1
+							WHERE dv.dv_estado=1					
 							AND dv.prod_id=p.prod_id ) * 100 ), 2)
 					FROM ventas v, productos p, detalle_venta dv
 					WHERE dv.dv_estado=1
 					AND dv.prod_id=p.prod_id
 					AND v.vent_id=dv.vent_id
+					AND v.ven_fecha BETWEEN '$startDate' and '$endDate'
 					GROUP BY p.prod_nombre";
 			$result = $this->connect()->query($sql);
 			if($result->num_rows>0){
