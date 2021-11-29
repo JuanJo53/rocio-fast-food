@@ -113,7 +113,7 @@
                     var salesCount = [];
                     var sum=0;
                     for(var i=0;i<salesData.length;i++){
-                        sum+=salesData[i][1];
+                        sum+=parseInt(salesData[i][1]);
                         salesLabels.push(salesData[i][0]);
                         salesCount.push(salesData[i][1]);
                     }
@@ -155,7 +155,7 @@
                         var salesCount = [];
                         var sum=0;
                         for(var i=0;i<salesData.length;i++){
-                            sum+=salesData[i][1];
+                            sum+=parseInt(salesData[i][1]);
                             salesLabels.push(salesData[i][0]);
                             salesCount.push(salesData[i][1]);
                         }
