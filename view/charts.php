@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="sales col-8 me-5">
+            <div class="sales col-7 me-5">
                 <div class="col text-center text-uppercase">
                     <div class="home-title" >
                         <h1>Numero de Ventas por Fecha</h1>
@@ -62,7 +62,7 @@
                 </div>
                 <canvas id="salesChart" width="400" height="250"></canvas>
             </div>
-            <div class="salesProd col-3 ms-5">
+            <div class="salesProd col-4 ms-5">
                 <div class="col text-center text-uppercase">
                     <div class="home-title" >
                         <h1>Porcentaje de Ventas por Producto</h1>
@@ -78,8 +78,8 @@
                         <h1>Cantidad Disponible de los Productos</h1>
                     </div>
                 </div>
+                <canvas class="m-5" id="productsChart" width="400" height="200"></canvas>
             </div>
-            <canvas class="m-5" id="productsChart" width="400" height="200"></canvas>
         </div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
@@ -184,7 +184,7 @@
                             responsive: true,
                             plugins: {
                                 legend: {
-                                    position: 'top',
+                                    position: 'bottom',
                                 },
                             }
                         },
