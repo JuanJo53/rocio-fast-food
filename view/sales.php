@@ -301,13 +301,16 @@
                     <h4 class="modal-title" id="exampleModalLabel">¡Exito al realizar la venta!</h4>
                 </div>
                 <div class="modal-body">
-                    <h4 class="modal-title message_success" id="exampleModalLabel">Descargue la factura para imprimirla</h4>
-                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" type='button' role='button' id='downloadSaleInvoice' name='downloadSaleInvoice'>Descargar Factura</button>
+                    <h4 class="modal-title message_success" id="exampleModalLabel">Descargue la factura y el ticket para imprimirlos</h4>
+                    <button type="button" class="btn btn-info" type='button' role='button' id='downloadSaleInvoice' name='downloadSaleInvoice'>Descargar Factura</button>
+                    <button type="button" class="btn btn-primary" type='button' role='button' id='downloadSaleTicket' name='downloadSaleTicket'>Descargar Ticket</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Download Sale Invoice Modal -->
+    
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -501,12 +504,20 @@
             });
             $('#downloadSaleInvoice').click(function(){
                 var page = encodeURI("../controller/sales/saleInvoice.php");
-                window.location = page;
-                $(".downloadSaleInvoiceModal").modal('hide');
+                window.open(page);
                 setTimeout(
                     function(){
-                        location.reload();
-                    }, 4000
+                        alert('¡Factura Descargada!')
+                    }, 2000
+                );
+            });
+            $('#downloadSaleTicket').click(function(){
+                var page = encodeURI("../controller/sales/saleTicketReport.php");
+                window.open(page);
+                setTimeout(
+                    function(){
+                        alert('¡Ticket Descargado!')
+                    }, 2000
                 );
             });
         });
