@@ -10,24 +10,22 @@
         $prodsData=$_POST['prodsList'];
         $products=json_decode($prodsData);    
         // $date=date('Y-m-d');
-        $date=date('Y-m-d', strtotime('-1 day'));
+        $date=date('Y-m-d');
         $total=0;
         $stockVerif=false;
         $procesStatus='false';
         $newStocks=array();
         
         //Adding new client if needed.
-        $client = new Client;        
+        $client = new Client;
         if (isset($_POST['saleCliName'])) {
             $clientName=$_POST['saleCliName'];        
             $result = $client->newClient($clientName,$clientNit);
         }
-        $clientResponse = $client->getClientByNit($clientNit);        
-        if(!empty($clientResponse)){
+        $clientResponse = $client->getClientByNit($clientNit);
             while($row=$clientResponse->fetch_array()){
                 $clientId=$row['cl_id'];
             }
-        }
 
         //Adding sale procedure starts here
         $sale = new Sale;        

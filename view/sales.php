@@ -302,9 +302,9 @@
                 </div>
                 <div class="modal-body">
                     <h4 class="modal-title message_success" id="exampleModalLabel">Descargue la factura y el ticket para imprimirlos</h4>
-                    <button type="button" class="btn btn-info" type='button' role='button' id='downloadSaleInvoice' name='downloadSaleInvoice'>Descargar Factura</button>
-                    <button type="button" class="btn btn-primary" type='button' role='button' id='downloadSaleTicket' name='downloadSaleTicket'>Descargar Ticket</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-info" role='button' id='downloadSaleInvoice' name='downloadSaleInvoice'>Descargar Factura</button>
+                    <button type="button" class="btn btn-primary" role='button' id='downloadSaleTicket' name='downloadSaleTicket'>Descargar Ticket</button>
+                    <button type="button" class="btn btn-secondary" role='button' data-bs-dismiss="modal" id='closeSale' name='closeSale'>Cerrar</button>
                 </div>
             </div>
         </div>
@@ -518,6 +518,13 @@
                     function(){
                         alert('¡Ticket Descargado!')
                     }, 2000
+                );
+            });
+            $('#closeSale').click(function(){
+                setTimeout(
+                    function(){
+                        location.reload();
+                    }, 1000
                 );
             });
         });
